@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8A8686</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#4F9891</color>
+    <color name="colorFlagBlue">#0306B6</color>
+    <color name="colorFlagWhite">#F5F5F8</color>
+    <color name="colorFlagRed">#EA0202</color>
+    <color name="colorFlagLightBlue">#47AEDD</color>
+    <color name="colorFlagDark">#070707</color>
+    <color name="world_background">#B7B994</color>
+</resources>
