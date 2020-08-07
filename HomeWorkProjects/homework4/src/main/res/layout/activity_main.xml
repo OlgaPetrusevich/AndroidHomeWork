@@ -4,15 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:padding="50dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.gmail.petrusevich.volha.homework4.CustomView
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:custom_color1="@android:color/holo_purple"
+        app:custom_color2="@android:color/holo_green_dark"
+        app:custom_color3="@android:color/holo_red_light"
+        app:custom_color4="@android:color/darker_gray"
+        app:custom_color_center="@color/colorPrimaryDark"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
