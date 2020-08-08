@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Custom view</string>
+    <string name="coordinatesClick">Нажаты координаты: [%d;%d] </string>
 </resources>

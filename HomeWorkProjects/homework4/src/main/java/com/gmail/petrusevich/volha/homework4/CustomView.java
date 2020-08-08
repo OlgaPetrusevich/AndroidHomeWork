@@ -3,21 +3,26 @@ package com.gmail.petrusevich.volha.homework4;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.Random;
+
 public class CustomView extends View {
 
-    private int color1 = 0;
-    private int color2 = 0;
-    private int color3 = 0;
-    private int color4 = 0;
-    private int radius = 0;
-    private int color_center = 0;
-    private int radius_center = 0;
+    interface TouchActionListener {
+        void onTouchDown(int x, int y);
+    }
+
+    private int[] colors = new int[4];
+    private int radiusLarge = 0;
+    private int colorCenter = 0;
+    private int radiusSmall = 0;
     private Paint paintRightBottom = new Paint();
     private Paint paintBottomLeft = new Paint();
     private Paint paintLeftTop = new Paint();
@@ -29,6 +34,9 @@ public class CustomView extends View {
     private int rightPoint = 0;
     private int topPoint = 0;
     private int bottomPoint = 0;
+    private Random random = new Random();
+
+    private TouchActionListener touchActionListener;
 
     public CustomView(Context context) {
         super(context);
@@ -41,19 +49,16 @@ public class CustomView extends View {
 
     public CustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-    }
-
-    public CustomView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
+        getAttrs(attrs);
     }
 
     private void getAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomView);
-        color1 = typedArray.getColor(R.styleable.CustomView_custom_color1, 0);
-        color2 = typedArray.getColor(R.styleable.CustomView_custom_color2, 0);
-        color3 = typedArray.getColor(R.styleable.CustomView_custom_color3, 0);
-        color4 = typedArray.getColor(R.styleable.CustomView_custom_color4, 0);
-        color_center = typedArray.getColor(R.styleable.CustomView_custom_color_center, 0);
+        for (int i = 0; i < colors.length; i++) {
+            colors[i] = typedArray.getColor(R.styleable.CustomView_custom_color, 0);
+            colors[i] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        }
+        colorCenter = typedArray.getColor(R.styleable.CustomView_custom_color_center, 0);
         typedArray.recycle();
     }
 
@@ -62,12 +67,12 @@ public class CustomView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
         widthCenter = w / 2;
         heightCenter = h / 2;
-        radius = w / 2;
-        radius_center = radius / 3;
-        leftPoint = widthCenter - radius;
-        rightPoint = widthCenter + radius;
-        topPoint = heightCenter - radius;
-        bottomPoint = heightCenter + radius;
+        radiusLarge = widthCenter;
+        radiusSmall = radiusLarge / 3;
+        leftPoint = widthCenter - radiusLarge;
+        rightPoint = widthCenter + radiusLarge;
+        topPoint = heightCenter - radiusLarge;
+        bottomPoint = heightCenter + radiusLarge;
 
     }
 
@@ -85,16 +90,64 @@ public class CustomView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        paintRightBottom.setColor(color1);
-        paintBottomLeft.setColor(color2);
-        paintLeftTop.setColor(color3);
-        paintTopRight.setColor(color4);
-        paintCenter.setColor(color_center);
-        canvas.drawArc(leftPoint, topPoint, rightPoint, bottomPoint, 0, 90, true, paintRightBottom);
-        canvas.drawArc(leftPoint, topPoint, rightPoint, bottomPoint, 90, 90, true, paintBottomLeft);
-        canvas.drawArc(leftPoint, topPoint, rightPoint, bottomPoint, 180, 90, true, paintLeftTop);
-        canvas.drawArc(leftPoint, topPoint, rightPoint, bottomPoint, 270, 90, true, paintTopRight);
-        canvas.drawCircle(widthCenter, heightCenter, radius_center, paintCenter);
+        paintRightBottom.setColor(colors[0]);
+        paintBottomLeft.setColor(colors[1]);
+        paintLeftTop.setColor(colors[2]);
+        paintTopRight.setColor(colors[3]);
+        paintCenter.setColor(colorCenter);
+        drawSegment(canvas, 0, paintRightBottom);
+        drawSegment(canvas, 90, paintBottomLeft);
+        drawSegment(canvas, 180, paintLeftTop);
+        drawSegment(canvas, 270, paintTopRight);
+        canvas.drawCircle(widthCenter, heightCenter, radiusSmall, paintCenter);
         super.onDraw(canvas);
+
     }
+
+    private void drawSegment(Canvas canvas, float startAngle, Paint paint) {
+        canvas.drawArc(leftPoint, topPoint, rightPoint, bottomPoint, startAngle, 90, true, paint);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (touchActionListener != null) {
+                touchActionListener.onTouchDown((int) event.getX(), (int) event.getY());
+            }
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void setTouchActionListener(TouchActionListener touchActionListener) {
+        this.touchActionListener = touchActionListener;
+    }
+
+    public void getNewColor(int x, int y) {
+        int smallCircleSquare = (int) Math.PI * getSquaredNumber(radiusSmall);
+        int radiusClick = (int) Math.sqrt(getSquaredNumber(x - widthCenter) + getSquaredNumber(y - heightCenter));
+        int clickCircleSquare = (int) Math.PI * getSquaredNumber(radiusClick);
+        if (clickCircleSquare <= smallCircleSquare) {
+            getRandomColors();
+        } else if (x > widthCenter && y > heightCenter) {
+            colors[0] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        } else if (x < widthCenter && y > heightCenter) {
+            colors[1] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        } else if (x < widthCenter && y < heightCenter) {
+            colors[2] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        } else if (x > widthCenter && y < heightCenter) {
+            colors[3] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        }
+        invalidate();
+    }
+
+    private void getRandomColors() {
+        for (int i = 0; i < colors.length; i++) {
+            colors[i] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+        }
+    }
+
+    private int getSquaredNumber(int number) {
+        return number * number;
+    }
+
 }
