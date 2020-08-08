@@ -2,23 +2,22 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutParent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:padding="50dp">
+    android:padding="50dp"
+    tools:context=".MainActivity">
 
     <com.gmail.petrusevich.volha.homework4.CustomView
         android:id="@+id/custom_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:custom_color="@color/colorAccent"
+        app:custom_color_center="@color/colorGreyBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:custom_color="@color/colorAccent"
-        app:custom_color_center="@color/colorPrimaryDark"
-        />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

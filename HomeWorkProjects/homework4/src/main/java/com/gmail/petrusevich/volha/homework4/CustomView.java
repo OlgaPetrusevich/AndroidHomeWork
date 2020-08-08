@@ -73,7 +73,6 @@ public class CustomView extends View {
         rightPoint = widthCenter + radiusLarge;
         topPoint = heightCenter - radiusLarge;
         bottomPoint = heightCenter + radiusLarge;
-
     }
 
     @Override
