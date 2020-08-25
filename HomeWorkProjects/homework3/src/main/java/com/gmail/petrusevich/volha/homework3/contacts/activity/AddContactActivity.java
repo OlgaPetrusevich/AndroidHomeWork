@@ -15,7 +15,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gmail.petrusevich.volha.homework3.R;
 
 
-public class AddActivity extends AppCompatActivity implements View.OnClickListener {
+public class AddContactActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String KEY_NAME = "name";
+    public static final String KEY_DATA = "dataContact";
+
+    public static Intent newIntent(Context context) {
+        return new Intent(context, AddContactActivity.class);
+    }
 
     private Button buttonBack;
     private RadioButton radioButtonPhone;
@@ -23,8 +30,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private EditText editName;
     private RadioButton radioButtonMail;
     private Button checkButton;
-    public static final String KEY_NAME = "name";
-    public static final String KEY_DATA = "dataContact";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,10 +37,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_add_contact);
         findView();
         setClick();
-    }
-
-    public static Intent newIntent(Context context) {
-        return new Intent(context, AddActivity.class);
     }
 
     @Override
@@ -70,7 +71,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         editName = findViewById(R.id.name_edit_text);
     }
 
-    private void setClick(){
+    private void setClick() {
         buttonBack.setOnClickListener(this);
         radioButtonPhone.setOnClickListener(this);
         radioButtonMail.setOnClickListener(this);

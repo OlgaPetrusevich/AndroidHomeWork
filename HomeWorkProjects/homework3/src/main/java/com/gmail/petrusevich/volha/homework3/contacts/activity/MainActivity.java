@@ -50,18 +50,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         searchContact.searchContact(searchView, contactListAdapter);
     }
 
-    public int getPosition() {
+    private int getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    private void setPosition(int position) {
         this.position = position;
     }
 
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.add_button) {
-            startActivityForResult(AddActivity.newIntent(this), 1);
+            startActivityForResult(AddContactActivity.newIntent(this), 1);
         }
     }
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onContactClick(int position) {
         setPosition(position);
-        startActivityForResult(EditActivity.newIntent(this, contacts.get(position)), 2);
+        startActivityForResult(EditContactActivity.newIntent(this, contacts.get(position)), 2);
     }
 
     private void emptyList() {

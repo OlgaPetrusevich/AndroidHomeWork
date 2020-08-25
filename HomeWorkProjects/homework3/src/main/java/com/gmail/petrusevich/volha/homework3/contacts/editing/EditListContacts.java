@@ -3,8 +3,8 @@ package com.gmail.petrusevich.volha.homework3.contacts.editing;
 import android.content.Intent;
 
 import com.gmail.petrusevich.volha.homework3.R;
-import com.gmail.petrusevich.volha.homework3.contacts.activity.AddActivity;
-import com.gmail.petrusevich.volha.homework3.contacts.activity.EditActivity;
+import com.gmail.petrusevich.volha.homework3.contacts.activity.AddContactActivity;
+import com.gmail.petrusevich.volha.homework3.contacts.activity.EditContactActivity;
 import com.gmail.petrusevich.volha.homework3.contacts.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework3.contacts.listcontacts.Contacts;
 import com.gmail.petrusevich.volha.homework3.contacts.sorting.SortedContact;
@@ -16,8 +16,8 @@ public class EditListContacts {
     private static final String KEY_MAIL = "@";
 
     public void addContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter) {
-        String name = data.getStringExtra(AddActivity.KEY_NAME);
-        String contactData = data.getStringExtra(AddActivity.KEY_DATA);
+        String name = data.getStringExtra(AddContactActivity.KEY_NAME);
+        String contactData = data.getStringExtra(AddContactActivity.KEY_DATA);
         int image;
         if (contactData == null) {
             return;
@@ -33,7 +33,7 @@ public class EditListContacts {
     }
 
     public void editContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter, int position) {
-        Contacts contact = (Contacts) data.getParcelableExtra(EditActivity.KEY_EDIT);
+        Contacts contact = (Contacts) data.getParcelableExtra(EditContactActivity.KEY_EDIT);
         if (contact != null) {
             String name = contact.getName();
             String contactData = contact.getContactData();
@@ -45,7 +45,7 @@ public class EditListContacts {
     }
 
     public void removeContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter, int position) {
-        boolean isContact = data.getBooleanExtra(EditActivity.KEY_REMOVE, true);
+        boolean isContact = data.getBooleanExtra(EditContactActivity.KEY_REMOVE, true);
         if (!isContact) {
             listContacts.remove(position);
         }

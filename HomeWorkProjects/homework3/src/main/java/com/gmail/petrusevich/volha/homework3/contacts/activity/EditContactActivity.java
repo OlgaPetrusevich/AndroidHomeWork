@@ -13,7 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.gmail.petrusevich.volha.homework3.R;
 import com.gmail.petrusevich.volha.homework3.contacts.listcontacts.Contacts;
 
-public class EditActivity extends AppCompatActivity implements View.OnClickListener {
+public class EditContactActivity extends AppCompatActivity implements View.OnClickListener {
+
+    public static final String KEY_EDIT = "contact";
+    public static final String KEY_REMOVE = "removeContact";
+
+    public static Intent newIntent(Context context, Contacts contact) {
+        Intent intent = new Intent(context, EditContactActivity.class);
+        intent.putExtra(KEY_EDIT, contact);
+        return intent;
+    }
 
     private Button buttonBack;
     private Button buttonRemove;
@@ -22,14 +31,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
     private EditText nameEditText;
     private EditText phoneEdit;
     private Boolean isContact;
-    public static final String KEY_EDIT = "contact";
-    public static final String KEY_REMOVE = "removeContact";
 
-    public static Intent newIntent(Context context, Contacts contact) {
-        Intent intent = new Intent(context, EditActivity.class);
-        intent.putExtra(KEY_EDIT, contact);
-        return intent;
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,7 +81,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         buttonCheck.setOnClickListener(this);
     }
 
-    private void removeContact(){
+    private void removeContact() {
         isContact = false;
         Intent intent1 = new Intent();
         intent1.putExtra(KEY_REMOVE, isContact);
@@ -87,7 +89,7 @@ public class EditActivity extends AppCompatActivity implements View.OnClickListe
         finish();
     }
 
-    private void saveChanges(){
+    private void saveChanges() {
         contacts.setName(nameEditText.getText().toString());
         contacts.setContactData(phoneEdit.getText().toString());
         Intent intent = new Intent();
