@@ -35,6 +35,8 @@ public class CustomView extends View {
     private int topPoint = 0;
     private int bottomPoint = 0;
     private Random random = new Random();
+    private int largeCircleSquare;
+    private int clickCircleSquare;
 
     private TouchActionListener touchActionListener;
 
@@ -55,8 +57,8 @@ public class CustomView extends View {
     private void getAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CustomView);
         for (int i = 0; i < colors.length; i++) {
-            colors[i] = typedArray.getColor(R.styleable.CustomView_custom_color, 0);
-            colors[i] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+            int defaultColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+            colors[i] = typedArray.getColor(R.styleable.CustomView_custom_color, defaultColor);
         }
         colorCenter = typedArray.getColor(R.styleable.CustomView_custom_color_center, 0);
         typedArray.recycle();
@@ -73,6 +75,7 @@ public class CustomView extends View {
         rightPoint = widthCenter + radiusLarge;
         topPoint = heightCenter - radiusLarge;
         bottomPoint = heightCenter + radiusLarge;
+        largeCircleSquare = (int) Math.PI * getSquaredNumber(radiusLarge);
     }
 
     @Override
@@ -123,9 +126,10 @@ public class CustomView extends View {
 
     public void getNewColor(int x, int y) {
         int smallCircleSquare = (int) Math.PI * getSquaredNumber(radiusSmall);
-        int radiusClick = (int) Math.sqrt(getSquaredNumber(x - widthCenter) + getSquaredNumber(y - heightCenter));
-        int clickCircleSquare = (int) Math.PI * getSquaredNumber(radiusClick);
-        if (clickCircleSquare <= smallCircleSquare) {
+        boolean areaClick = isAreaClick(x, y);
+        if (areaClick) {
+            return;
+        } else if (clickCircleSquare <= smallCircleSquare) {
             getRandomColors();
         } else if (x > widthCenter && y > heightCenter) {
             colors[0] = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
@@ -147,6 +151,12 @@ public class CustomView extends View {
 
     private int getSquaredNumber(int number) {
         return number * number;
+    }
+
+    public boolean isAreaClick(int x, int y) {
+        int radiusClick = (int) Math.sqrt(getSquaredNumber(x - widthCenter) + getSquaredNumber(y - heightCenter));
+        clickCircleSquare = (int) Math.PI * getSquaredNumber(radiusClick);
+        return clickCircleSquare > largeCircleSquare;
     }
 
 }

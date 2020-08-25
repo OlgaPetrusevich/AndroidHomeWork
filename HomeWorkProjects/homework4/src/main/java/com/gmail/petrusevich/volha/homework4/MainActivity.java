@@ -1,14 +1,12 @@
 package com.gmail.petrusevich.volha.homework4;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -16,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isSwitchOn;
     private CustomView customView;
+    private Settings settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +22,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         customView = findViewById(R.id.custom_view);
+        settings = Settings.getInstance(MainActivity.this);
         customView.setTouchActionListener(new CustomView.TouchActionListener() {
             @Override
             public void onTouchDown(int x, int y) {
                 String textCoordinates = getString(R.string.coordinatesClick, x, y);
-                showMessage(textCoordinates);
+                if (!customView.isAreaClick(x, y)) {
+                    showMessage(textCoordinates);
+                }
                 customView.getNewColor(x, y);
             }
         });
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        isSwitchOn = loadSettings();
+        isSwitchOn = settings.loadSettings();
         super.onResume();
     }
 
@@ -58,10 +60,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(OptionActivity.newIntent(this));
     }
 
-    private boolean loadSettings() {
-        SharedPreferences sharedPreferences = getSharedPreferences(OptionActivity.SAVE_KEY, Context.MODE_PRIVATE);
-        return sharedPreferences.getBoolean(OptionActivity.SAVE_KEY, false);
-    }
 
     private void showMessage(String text) {
         if (isSwitchOn) {
