@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:background="@drawable/image_shadow">
+        android:id="@+id/viewPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/image_shadow"
+        app:layout_constraintBottom_toTopOf="@id/layouts"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
             android:id="@+id/photo"
@@ -69,121 +73,119 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:id="@+id/layouts"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/image_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/view"
+        app:layout_constraintTop_toBottomOf="@id/viewPhoto">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layouts"
+        <TextView
+            style="@style/TextWhite20sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/image_shadow"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorLightGrey"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/layout_name"
+            app:layout_constraintBottom_toTopOf="@id/mark2"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/view"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                style="@style/TextWhite20sp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/colorLightGrey"
-                android:gravity="bottom"
-                android:padding="10dp"
-                android:text="@string/layout_name"
-                app:layout_constraintBottom_toTopOf="@id/mark2"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/health"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/mark2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/health"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mark2" />
 
-            <ImageView
-                android:id="@+id/mark2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/bookmark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/share2" />
+        <ImageView
+            android:id="@+id/mark2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/share2" />
 
-            <ImageView
-                android:id="@+id/share2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/share"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+        <ImageView
+            android:id="@+id/share2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/view"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/image_shadow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/layouts"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewPhoto">
+
+        <TextView
+            style="@style/TextWhite20sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:background="@drawable/image_shadow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/layouts"
+            android:background="@color/colorLightGrey"
+            android:gravity="bottom"
+            android:padding="10dp"
+            android:text="@string/view_name"
+            app:layout_constraintBottom_toTopOf="@id/mark3"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                style="@style/TextWhite20sp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@color/colorLightGrey"
-                android:gravity="bottom"
-                android:padding="10dp"
-                android:text="@string/view_name"
-                app:layout_constraintBottom_toTopOf="@id/mark3"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/health"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/mark3" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/health"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/mark3" />
 
-            <ImageView
-                android:id="@+id/mark3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/bookmark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/share3" />
+        <ImageView
+            android:id="@+id/mark3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/bookmark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/share3" />
 
-            <ImageView
-                android:id="@+id/share3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/android_name"
-                android:padding="10dp"
-                android:src="@drawable/share"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+        <ImageView
+            android:id="@+id/share3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/android_name"
+            android:padding="10dp"
+            android:src="@drawable/share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
