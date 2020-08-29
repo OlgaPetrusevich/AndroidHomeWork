@@ -32,24 +32,22 @@ public class EditListContacts {
         contactListAdapter.notifyDataSetChanged();
     }
 
-    public void editContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter, int position) {
-        Contacts contact = (Contacts) data.getParcelableExtra(EditContactActivity.KEY_EDIT);
-        if (contact != null) {
+    public void showEditContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter, int position) {
+        boolean isContact = data.getBooleanExtra(EditContactActivity.KEY_ACTION, true);
+        Contacts contact = (Contacts) data.getParcelableExtra(EditContactActivity.KEY_CONTACT);
+        if (!isContact) {
+            listContacts.remove(position);
+            contactListAdapter.setListContactsCopy(listContacts);
+        } else if (contact != null) {
             String name = contact.getName();
             String contactData = contact.getContactData();
             listContacts.get(position).setName(name);
             listContacts.get(position).setContactData(contactData);
+            new SortedContact(listContacts).sortContact(listContacts);
         }
-        new SortedContact(listContacts).sortContact(listContacts);
         contactListAdapter.notifyDataSetChanged();
     }
 
-    public void removeContact(Intent data, List<Contacts> listContacts, ContactListAdapter contactListAdapter, int position) {
-        boolean isContact = data.getBooleanExtra(EditContactActivity.KEY_REMOVE, true);
-        if (!isContact) {
-            listContacts.remove(position);
-        }
-        contactListAdapter.setListContactsCopy(listContacts);
-        contactListAdapter.notifyDataSetChanged();
-    }
+
 }
+

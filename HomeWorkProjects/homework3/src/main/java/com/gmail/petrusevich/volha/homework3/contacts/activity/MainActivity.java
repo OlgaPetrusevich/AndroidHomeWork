@@ -15,12 +15,13 @@ import com.gmail.petrusevich.volha.homework3.R;
 import com.gmail.petrusevich.volha.homework3.contacts.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework3.contacts.editing.EditListContacts;
 import com.gmail.petrusevich.volha.homework3.contacts.listcontacts.Contacts;
-import com.gmail.petrusevich.volha.homework3.contacts.sorting.SearchContact;
 import com.gmail.petrusevich.volha.homework3.contacts.sorting.SortedContact;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.gmail.petrusevich.volha.homework3.contacts.sorting.SearchContact.searchContact;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, ContactListAdapter.OnContactListener {
 
@@ -31,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView noContact;
     private SortedContact sortedContact = new SortedContact(contacts);
     private SearchView searchView;
-    private SearchContact searchContact = new SearchContact();
     private ContactListAdapter contactListAdapter;
     private EditListContacts editListContacts = new EditListContacts();
     private final String SAVE_KEY = "saveListContacts";
@@ -47,11 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contactListAdapter = new ContactListAdapter(contacts, this);
         recyclerView.setAdapter(contactListAdapter);
         emptyList();
-        searchContact.searchContact(searchView, contactListAdapter);
-    }
-
-    private int getPosition() {
-        return position;
+        searchContact(searchView, contactListAdapter);
     }
 
     private void setPosition(int position) {
@@ -74,8 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             editListContacts.addContact(data, contacts, contactListAdapter);
             emptyList();
         } else if (requestCode == 2) {
-            editListContacts.editContact(data, contacts, contactListAdapter, getPosition());
-            editListContacts.removeContact(data, contacts, contactListAdapter, position);
+            editListContacts.showEditContact(data, contacts, contactListAdapter, position);
             emptyList();
         }
     }
@@ -116,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         contacts = savedInstanceState.getParcelableArrayList(SAVE_KEY);
         contactListAdapter = new ContactListAdapter(contacts, this);
         recyclerView.setAdapter(contactListAdapter);
-        searchContact.searchContact(searchView, contactListAdapter);
+        searchContact(searchView, contactListAdapter);
         emptyList();
         String t = savedInstanceState.getString(SAVE_SEARCH_KEY);
         searchView.setQuery(t, true);

@@ -15,12 +15,12 @@ import com.gmail.petrusevich.volha.homework3.contacts.listcontacts.Contacts;
 
 public class EditContactActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String KEY_EDIT = "contact";
-    public static final String KEY_REMOVE = "removeContact";
+    public static final String KEY_CONTACT = "what";
+    public static final String KEY_ACTION = "whatAction";
 
     public static Intent newIntent(Context context, Contacts contact) {
         Intent intent = new Intent(context, EditContactActivity.class);
-        intent.putExtra(KEY_EDIT, contact);
+        intent.putExtra(KEY_CONTACT, contact);
         return intent;
     }
 
@@ -39,7 +39,7 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_edit_contact);
         findView();
         setClick();
-        editText();
+        showContactInfo();
     }
 
     @Override
@@ -49,10 +49,12 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.remove_button:
-                removeContact();
+                isContact = false;
+                actionContact();
                 break;
             case R.id.check_button:
-                saveChanges();
+                isContact = true;
+                actionContact();
                 break;
             default:
                 break;
@@ -67,8 +69,8 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
         phoneEdit = findViewById(R.id.phone_edit);
     }
 
-    private void editText() {
-        contacts = getIntent().getParcelableExtra(KEY_EDIT);
+    private void showContactInfo() {
+        contacts = getIntent().getParcelableExtra(KEY_CONTACT);
         if (contacts != null) {
             nameEditText.setText(contacts.getName());
             phoneEdit.setText(contacts.getContactData());
@@ -81,20 +83,16 @@ public class EditContactActivity extends AppCompatActivity implements View.OnCli
         buttonCheck.setOnClickListener(this);
     }
 
-    private void removeContact() {
-        isContact = false;
-        Intent intent1 = new Intent();
-        intent1.putExtra(KEY_REMOVE, isContact);
-        setResult(RESULT_OK, intent1);
-        finish();
-    }
-
-    private void saveChanges() {
-        contacts.setName(nameEditText.getText().toString());
-        contacts.setContactData(phoneEdit.getText().toString());
+    private void actionContact() {
+        if (isContact) {
+            contacts.setName(nameEditText.getText().toString());
+            contacts.setContactData(phoneEdit.getText().toString());
+        }
         Intent intent = new Intent();
-        intent.putExtra(KEY_EDIT, contacts);
+        intent.putExtra(KEY_CONTACT, contacts);
+        intent.putExtra(KEY_ACTION, isContact);
         setResult(RESULT_OK, intent);
         finish();
     }
+
 }
