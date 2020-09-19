@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.homework6;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -15,6 +16,7 @@ import com.gmail.petrusevich.volha.homework6.database.controller.SortedList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -54,6 +56,9 @@ public class ThreadWithHandler implements Repository {
                 Contacts contactNew = listContacts.get(contactInfo.getPosition());
                 contactNew.setName(contactInfo.getNameContact());
                 contactNew.setContactData(contactInfo.getDataContact());
+                listContacts.remove(contactInfo.getPosition());
+                int position = sortedList.getSortedPosition(listContacts, contactNew);
+                listContacts.add(position, contactNew);
                 adapter.updateListContact(listContacts);
             }
         }

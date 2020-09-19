@@ -1,5 +1,7 @@
 package com.gmail.petrusevich.volha.homework6;
 
+import android.content.Context;
+
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
 import com.gmail.petrusevich.volha.homework6.database.Contacts;
@@ -18,11 +20,13 @@ public class ThreadWithRxJava implements Repository {
     private List<Contacts> listContacts;
     private SortedList sortedList = new SortedList();
     private ContactInfo contactInfo = ContactInfo.getInstance();
+    private Context context;
 
-    public ThreadWithRxJava(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts) {
+    public ThreadWithRxJava(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts, Context context) {
         this.contactDao = contactDao;
         this.adapter = adapter;
         this.listContacts = listContacts;
+        this.context = context;
     }
 
     @NotNull

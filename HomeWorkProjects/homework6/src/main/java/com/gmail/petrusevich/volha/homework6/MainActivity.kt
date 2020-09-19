@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.homework6
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
         setContentView(R.layout.activity_main)
         viewAddButton.setOnClickListener(this)
         recyclerView.adapter = contactListAdapter
-        repository = threadCreation.createThreadWork(itemPosition, contactDao, contactListAdapter, listContacts)
+        repository = threadCreation.createThreadWork(itemPosition, contactDao, contactListAdapter, listContacts, this)
         listContacts = repository.getAllContacts()
         searchContact.searchContact(viewSearchContact, contactListAdapter, repository)
         viewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
@@ -43,7 +44,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
 
             override fun onItemSelected(parent: AdapterView<*>?, itemView: View?, position: Int, id: Long) {
                 itemPosition = position
-                repository = threadCreation.createThreadWork(position, contactDao, contactListAdapter, listContacts)
+                repository = threadCreation.createThreadWork(position, contactDao, contactListAdapter, listContacts, this@MainActivity)
+                listContacts = repository.getAllContacts()
             }
         }
 
