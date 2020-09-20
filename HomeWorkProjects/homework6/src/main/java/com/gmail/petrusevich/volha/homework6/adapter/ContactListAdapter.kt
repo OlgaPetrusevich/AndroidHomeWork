@@ -3,11 +3,10 @@ package com.gmail.petrusevich.volha.homework6.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.petrusevich.volha.homework6.R
-import com.gmail.petrusevich.volha.homework6.database.Contacts
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts
+import kotlinx.android.synthetic.main.item_contact.view.*
 
 class ContactListAdapter(
 
@@ -38,18 +37,14 @@ class ContactListAdapter(
 
     class ViewHolder(itemView: View, private val onContactListener: OnContactListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        private val itemName: TextView = itemView.findViewById(R.id.viewTextName)
-        private val itemData: TextView = itemView.findViewById(R.id.viewContactData)
-        private val itemImage: ImageView = itemView.findViewById(R.id.viewImage)
-
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(contact: Contacts?) {
-            itemName.text = contact?.name
-            itemData.text = contact?.contactData
-            itemImage.setImageResource(contact?.image!!)
+            itemView.viewTextName.text = contact?.name
+            itemView.viewContactData.text = contact?.contactData
+            itemView.viewImage.setImageResource(contact?.image as Int)
         }
 
         override fun onClick(view: View?) {

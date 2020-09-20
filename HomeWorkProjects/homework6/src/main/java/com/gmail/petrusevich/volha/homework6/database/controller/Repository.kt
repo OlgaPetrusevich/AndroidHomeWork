@@ -1,6 +1,6 @@
 package com.gmail.petrusevich.volha.homework6.database.controller
 
-import com.gmail.petrusevich.volha.homework6.database.Contacts
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts
 
 interface Repository {
 
@@ -15,5 +15,7 @@ interface Repository {
     fun delete(idContact: String)
 
     fun update(idContact: String)
+
+    fun closeThreads()
 
 }

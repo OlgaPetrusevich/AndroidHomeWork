@@ -1,7 +1,8 @@
-package com.gmail.petrusevich.volha.homework6.database
+package com.gmail.petrusevich.volha.homework6.database.datacontact
 
 import androidx.room.*
 import com.gmail.petrusevich.volha.homework6.R
+import com.gmail.petrusevich.volha.homework6.database.ContactDatabaseConverter
 import java.util.*
 
 @Entity

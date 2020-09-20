@@ -1,10 +1,10 @@
-package com.gmail.petrusevich.volha.homework6;
+package com.gmail.petrusevich.volha.homework6.database.controller;
 
 import android.content.Intent;
 
-import com.gmail.petrusevich.volha.homework6.database.ContactDataType;
-import com.gmail.petrusevich.volha.homework6.database.Contacts;
-import com.gmail.petrusevich.volha.homework6.database.controller.Repository;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactDataType;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts;
 
 public class DatabaseController {
 

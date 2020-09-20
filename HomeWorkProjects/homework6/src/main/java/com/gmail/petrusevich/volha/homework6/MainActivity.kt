@@ -1,9 +1,7 @@
 package com.gmail.petrusevich.volha.homework6
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
@@ -12,9 +10,11 @@ import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter
 import com.gmail.petrusevich.volha.homework6.adapter.OnContactListener
 import com.gmail.petrusevich.volha.homework6.database.ContactDao
 import com.gmail.petrusevich.volha.homework6.database.ContactDatabase
-import com.gmail.petrusevich.volha.homework6.database.Contacts
+import com.gmail.petrusevich.volha.homework6.database.controller.DatabaseController
 import com.gmail.petrusevich.volha.homework6.database.controller.Repository
 import com.gmail.petrusevich.volha.homework6.database.controller.SearchContact
+import com.gmail.petrusevich.volha.homework6.database.controller.workthreads.ThreadCreation
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListener {
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
         repository = threadCreation.createThreadWork(itemPosition, contactDao, contactListAdapter, listContacts, this)
         listContacts = repository.getAllContacts()
         searchContact.searchContact(viewSearchContact, contactListAdapter, repository)
-        viewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        viewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
@@ -76,5 +76,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
         }
     }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
+        repository.closeThreads()
+    }
 }

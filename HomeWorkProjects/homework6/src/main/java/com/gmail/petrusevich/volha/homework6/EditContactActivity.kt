@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo
 import kotlinx.android.synthetic.main.activity_edit_contact.*
 
 const val KEY_ACTION = "action"

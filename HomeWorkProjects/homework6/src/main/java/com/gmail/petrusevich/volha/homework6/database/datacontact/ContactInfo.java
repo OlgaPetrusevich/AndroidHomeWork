@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework6;
+package com.gmail.petrusevich.volha.homework6.database.datacontact;
 
 public class ContactInfo {
 

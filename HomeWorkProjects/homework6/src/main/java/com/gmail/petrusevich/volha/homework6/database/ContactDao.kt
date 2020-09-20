@@ -1,6 +1,7 @@
 package com.gmail.petrusevich.volha.homework6.database
 
 import androidx.room.*
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts
 
 @Dao
 @TypeConverters(ContactDatabaseConverter::class)

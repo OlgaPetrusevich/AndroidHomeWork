@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework6;
+package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
 import android.content.Context;
 import android.os.Build;
@@ -6,9 +6,10 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
-import com.gmail.petrusevich.volha.homework6.database.Contacts;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts;
 import com.gmail.petrusevich.volha.homework6.database.controller.Repository;
 import com.gmail.petrusevich.volha.homework6.database.controller.SortedList;
 
@@ -166,5 +167,10 @@ public class ThreadWithFuture implements Repository {
                         adapter.updateListContact(listContacts);
                     }
                 }, context.getMainExecutor());
+    }
+
+    @Override
+    public void closeThreads() {
+        threadPoolExecutor.shutdown();
     }
 }

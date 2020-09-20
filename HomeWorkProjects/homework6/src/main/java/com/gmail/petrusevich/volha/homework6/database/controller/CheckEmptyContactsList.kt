@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework6
+package com.gmail.petrusevich.volha.homework6.database.controller
 
 import android.view.View
 import android.widget.TextView

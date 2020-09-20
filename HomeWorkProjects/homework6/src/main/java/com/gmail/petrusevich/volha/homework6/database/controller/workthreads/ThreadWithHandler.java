@@ -1,22 +1,21 @@
-package com.gmail.petrusevich.volha.homework6;
+package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
 import androidx.annotation.NonNull;
 
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
-import com.gmail.petrusevich.volha.homework6.database.Contacts;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts;
 import com.gmail.petrusevich.volha.homework6.database.controller.Repository;
 import com.gmail.petrusevich.volha.homework6.database.controller.SortedList;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -153,4 +152,8 @@ public class ThreadWithHandler implements Repository {
         });
     }
 
+    @Override
+    public void closeThreads() {
+        threadPoolExecutor.shutdown();
+    }
 }

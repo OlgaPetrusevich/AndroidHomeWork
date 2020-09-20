@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.gmail.petrusevich.volha.homework6.database.ContactDataType
+import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactDataType
 import kotlinx.android.synthetic.main.activity_add_contact.*
 
 class AddContactActivity : AppCompatActivity(), View.OnClickListener {

@@ -1,10 +1,10 @@
-package com.gmail.petrusevich.volha.homework6;
+package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
 import android.content.Context;
 
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
-import com.gmail.petrusevich.volha.homework6.database.Contacts;
+import com.gmail.petrusevich.volha.homework6.database.datacontact.Contacts;
 import com.gmail.petrusevich.volha.homework6.database.controller.Repository;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class ThreadCreation {
                 repository = new ThreadWithFuture(contactDao, adapter, list, context);
                 break;
             case 2:
-                repository = new ThreadWithRxJava(contactDao, adapter, list, context);
+                repository = new ThreadWithRxJava(contactDao, adapter, list);
         }
         return repository;
     }
