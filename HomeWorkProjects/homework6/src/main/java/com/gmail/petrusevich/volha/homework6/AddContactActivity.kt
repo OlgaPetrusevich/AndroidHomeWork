@@ -33,9 +33,9 @@ class AddContactActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun clickRadioGroup() {
-        viewGroupButton.setOnCheckedChangeListener { viewGroupButton, i ->
+        viewGroupButton.setOnCheckedChangeListener { viewGroupButton, viewButton ->
 
-            when (i) {
+            when (viewButton) {
                 R.id.viewPhoneButton -> {
                     viewDataAdd.setRawInputType(InputType.TYPE_CLASS_PHONE)
                     viewDataAdd.setHint(R.string.phone)

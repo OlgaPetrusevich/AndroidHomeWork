@@ -1,5 +1,13 @@
 package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
+import android.app.Activity;
+import android.content.Context;
+import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.gmail.petrusevich.volha.homework6.R;
+import com.gmail.petrusevich.volha.homework6.database.controller.CheckEmptyContactsListKt;
 import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
@@ -26,12 +34,18 @@ public class ThreadWithRxJava implements Repository {
     private List<Contacts> listContacts;
     private ContactInfo contactInfo = ContactInfo.getInstance();
     private CompositeDisposable disposables = new CompositeDisposable();
+    private RecyclerView recyclerView;
+    private Context context;
+    private TextView viewText;
 
 
-    public ThreadWithRxJava(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts) {
+    public ThreadWithRxJava(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts, RecyclerView recyclerView, Context context) {
         this.contactDao = contactDao;
         this.adapter = adapter;
         this.listContacts = listContacts;
+        this.recyclerView = recyclerView;
+        this.context = context;
+        viewText = ((Activity) context).findViewById(R.id.viewNoContactText);
     }
 
     @NotNull
@@ -49,6 +63,7 @@ public class ThreadWithRxJava implements Repository {
                 .subscribe(new Consumer<List<Contacts>>() {
                     @Override
                     public void accept(List<Contacts> contacts) throws Exception {
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                         adapter.updateListContact(contacts);
                     }
                 }));
@@ -110,6 +125,7 @@ public class ThreadWithRxJava implements Repository {
                     public void accept(List<Contacts> contacts) throws Exception {
                         listContacts = contacts;
                         adapter.updateListContact(contacts);
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                     }
                 }));
     }
@@ -133,6 +149,7 @@ public class ThreadWithRxJava implements Repository {
                     public void accept(List<Contacts> contacts) throws Exception {
                         listContacts = contacts;
                         adapter.updateListContact(listContacts);
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                     }
                 }));
     }

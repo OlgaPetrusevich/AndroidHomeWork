@@ -1,11 +1,16 @@
 package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.gmail.petrusevich.volha.homework6.R;
+import com.gmail.petrusevich.volha.homework6.database.controller.CheckEmptyContactsListKt;
 import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
@@ -32,13 +37,17 @@ public class ThreadWithFuture implements Repository {
     private SortedList sortedList = new SortedList();
     private ContactInfo contactInfo = ContactInfo.getInstance();
     private Context context;
+    private RecyclerView recyclerView;
+    private TextView viewText;
 
-    public ThreadWithFuture(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts, Context context) {
+    public ThreadWithFuture(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts, Context context, RecyclerView recyclerView) {
         threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
         this.contactDao = contactDao;
         this.adapter = adapter;
         this.listContacts = listContacts;
         this.context = context;
+        this.recyclerView = recyclerView;
+        viewText = ((Activity)context).findViewById(R.id.viewNoContactText);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -49,15 +58,14 @@ public class ThreadWithFuture implements Repository {
             @Override
             public List<Contacts> get() {
                 listContacts = contactDao.getAllContacts();
-                Log.d("threads", Thread.currentThread().getName() + " contactDao");
                 return listContacts;
             }
         }, threadPoolExecutor)
                 .thenAcceptAsync(new Consumer<List<Contacts>>() {
                     @Override
                     public void accept(List<Contacts> list) {
-                        Log.d("threads", Thread.currentThread().getName() + " adapter");
                         adapter.updateListContact(list);
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                     }
                 }, context.getMainExecutor());
         return listContacts;
@@ -115,6 +123,7 @@ public class ThreadWithFuture implements Repository {
                         int position = sortedList.getSortedPosition(listContacts, contact);
                         listContacts.add(position, contact);
                         adapter.updateListContact(listContacts);
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                     }
                 }, context.getMainExecutor());
     }
@@ -137,6 +146,7 @@ public class ThreadWithFuture implements Repository {
                     public void accept(Void aVoid) {
                         listContacts.remove(contactInfo.getPosition());
                         adapter.updateListContact(listContacts);
+                        CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                     }
                 }, context.getMainExecutor());
     }

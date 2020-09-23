@@ -1,11 +1,17 @@
 package com.gmail.petrusevich.volha.homework6.database.controller.workthreads;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.gmail.petrusevich.volha.homework6.R;
+import com.gmail.petrusevich.volha.homework6.database.controller.CheckEmptyContactsListKt;
 import com.gmail.petrusevich.volha.homework6.database.datacontact.ContactInfo;
 import com.gmail.petrusevich.volha.homework6.adapter.ContactListAdapter;
 import com.gmail.petrusevich.volha.homework6.database.ContactDao;
@@ -27,19 +33,24 @@ public class ThreadWithHandler implements Repository {
     private ContactDao contactDao;
     private ContactListAdapter adapter;
     private List<Contacts> listContacts;
+    private RecyclerView recyclerView;
+    private Context context;
     private SortedList sortedList = new SortedList();
     private ContactInfo contactInfo = ContactInfo.getInstance();
+    private TextView viewText;
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(@NonNull Message msg) {
             if (msg.what == 0) {
                 listContacts = (List<Contacts>) msg.obj;
+                CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
                 adapter.updateListContact(listContacts);
             } else if (msg.what == 1) {
                 Contacts contact = (Contacts) msg.obj;
                 int position = sortedList.getSortedPosition(listContacts, contact);
                 listContacts.add(position, contact);
                 adapter.updateListContact(listContacts);
+                CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
             } else if (msg.what == 2) {
                 Contacts contact = (Contacts) msg.obj;
                 contactInfo.setNameContact(contact.getName());
@@ -51,6 +62,7 @@ public class ThreadWithHandler implements Repository {
             } else if (msg.what == 4) {
                 listContacts.remove(contactInfo.getPosition());
                 adapter.updateListContact(listContacts);
+                CheckEmptyContactsListKt.isEmpty(adapter, recyclerView, viewText);
             } else if (msg.what == 5) {
                 Contacts contactNew = listContacts.get(contactInfo.getPosition());
                 contactNew.setName(contactInfo.getNameContact());
@@ -64,11 +76,14 @@ public class ThreadWithHandler implements Repository {
     };
 
 
-    public ThreadWithHandler(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts) {
+    public ThreadWithHandler(ContactDao contactDao, ContactListAdapter adapter, List<Contacts> listContacts, RecyclerView recyclerView, Context context) {
         threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(1);
         this.contactDao = contactDao;
         this.adapter = adapter;
         this.listContacts = listContacts;
+        this.recyclerView = recyclerView;
+        this.context = context;
+        viewText = ((Activity)context).findViewById(R.id.viewNoContactText);
     }
 
 

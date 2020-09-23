@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListener {
 
-    private var listContacts: List<Contacts>? = ArrayList()
+    private var listContacts: List<Contacts> = mutableListOf()
     private val searchContact: SearchContact = SearchContact()
     private val contactDao: ContactDao? by lazy { ContactDatabase.getInstance(this)?.getContactDao() }
     private val recyclerView: RecyclerView by lazy { findViewById<RecyclerView>(R.id.viewListContact) }
@@ -34,22 +34,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
         setContentView(R.layout.activity_main)
         viewAddButton.setOnClickListener(this)
         recyclerView.adapter = contactListAdapter
-        repository = threadCreation.createThreadWork(itemPosition, contactDao, contactListAdapter, listContacts, this)
+        repository = threadCreation.createThreadWork(itemPosition, contactDao, contactListAdapter, listContacts, this, recyclerView)
         listContacts = repository.getAllContacts()
         searchContact.searchContact(viewSearchContact, contactListAdapter, repository)
         viewSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, itemView: View?, position: Int, id: Long) {
                 itemPosition = position
-                repository = threadCreation.createThreadWork(position, contactDao, contactListAdapter, listContacts, this@MainActivity)
+                repository = threadCreation.createThreadWork(position, contactDao, contactListAdapter, listContacts, this@MainActivity, recyclerView)
                 listContacts = repository.getAllContacts()
             }
         }
-
-//        isEmpty(contactListAdapter, recyclerView, viewNoContactText)
     }
 
 

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.item_contact.view.*
 
 class ContactListAdapter(
 
-        private var listContacts: List<Contacts>?,
+        private var listContacts: List<Contacts>,
         private val onContactListener: OnContactListener) : RecyclerView.Adapter<ContactListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -19,20 +19,18 @@ class ContactListAdapter(
     }
 
     override fun getItemCount(): Int {
-        return if (listContacts?.size == null) {
-            0
-        } else {
-            listContacts?.size!!
-        }
+        return listContacts.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(listContacts?.get(position))
+        holder.bind(listContacts[position])
     }
 
     fun updateListContact(contacts: List<Contacts>?) {
-        listContacts = contacts
-        notifyDataSetChanged()
+        if (contacts != null) {
+            listContacts = contacts
+            notifyDataSetChanged()
+        }
     }
 
     class ViewHolder(itemView: View, private val onContactListener: OnContactListener) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
