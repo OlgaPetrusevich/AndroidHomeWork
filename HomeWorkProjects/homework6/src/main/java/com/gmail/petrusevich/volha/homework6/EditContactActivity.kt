@@ -16,12 +16,6 @@ class EditContactActivity : AppCompatActivity(), View.OnClickListener {
     private val contactInfo = ContactInfo.getInstance()
     private var isRemove = false
 
-    companion object {
-        fun newIntent(context: Context?): Intent {
-            return Intent(context, EditContactActivity::class.java)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_contact)
@@ -63,4 +57,9 @@ class EditContactActivity : AppCompatActivity(), View.OnClickListener {
         setResult(Activity.RESULT_OK, intent)
     }
 
+    companion object {
+        fun newIntent(context: Context?): Intent {
+            return Intent(context, EditContactActivity::class.java)
+        }
+    }
 }

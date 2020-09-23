@@ -12,12 +12,6 @@ import kotlinx.android.synthetic.main.activity_add_contact.*
 
 class AddContactActivity : AppCompatActivity(), View.OnClickListener {
 
-    companion object {
-        fun newIntent(context: Context?): Intent {
-            return Intent(context, AddContactActivity::class.java)
-        }
-    }
-
     private var dataType: ContactDataType = ContactDataType.PHONE
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +58,12 @@ class AddContactActivity : AppCompatActivity(), View.OnClickListener {
         intent.putExtra("data", data)
         intent.putExtra("type", dataType)
         setResult(Activity.RESULT_OK, intent)
+    }
+
+    companion object {
+        fun newIntent(context: Context?): Intent {
+            return Intent(context, AddContactActivity::class.java)
+        }
     }
 
 }
