@@ -16,8 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListener {
 
-    private val listContacts: List<Contacts> = ArrayList()
-    private var contactDatabase: ContactDatabase? = null
+    private val listContacts: List<Contacts> = mutableListOf()
+    private lateinit var contactDatabase: ContactDatabase
     private lateinit var viewModel: ContactViewModel
     private val searchContact: SearchContact = SearchContact()
     private lateinit var recyclerView: RecyclerView
@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         viewAddButton.setOnClickListener(this)
-        contactDatabase = ContactDatabase.getInstance(this)
+        contactDatabase = ContactDatabase.getInstance(this)!!
         recyclerView = findViewById<RecyclerView>(R.id.viewListContact)
         val contactListAdapter = ContactListAdapter(listContacts, this)
         recyclerView.adapter = contactListAdapter
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, OnContactListene
     }
 
     override fun onContactClick(position: Int) {
-        val contacts: List<Contacts>? = viewModel.listContacts?.value
+        val contacts = viewModel.listContacts?.value
         startActivity(EditContactActivity.newIntent(this, contacts?.get(position)?.id))
     }
 

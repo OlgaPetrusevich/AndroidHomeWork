@@ -23,14 +23,6 @@ class EditContactActivity : AppCompatActivity(), View.OnClickListener {
         contactRepository = ContactRepository(contactDao)
     }
 
-    companion object {
-        fun newIntent(context: Context?, id: Int?): Intent {
-            val intent = Intent(context, EditContactActivity::class.java)
-            intent.putExtra(KEY_ACTION, id)
-            return intent
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_contact)
@@ -41,8 +33,9 @@ class EditContactActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun showContactInfo(contactRepository: ContactRepository) {
-        val id = intent.getIntExtra(KEY_ACTION, 0)
-        contact = contactRepository.getContact(id)
+        intent.getIntExtra(KEY_ACTION, 0).let {
+            contact = contactRepository.getContact(it)
+        }
         viewNameEdit.setText(contact?.name)
         viewDataEdit.setText(contact?.contactData)
     }
@@ -63,8 +56,17 @@ class EditContactActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun editContact(contactRepository: ContactRepository) {
-        contact?.name = viewNameEdit.text.toString()
-        contact?.contactData = viewDataEdit.text.toString()
-        contactRepository.update(contact!!)
+            contact?.name = viewNameEdit.text.toString()
+            contact?.contactData = viewDataEdit.text.toString()
+            contactRepository.update(contact)
     }
+
+    companion object {
+        fun newIntent(context: Context?, id: Int?): Intent {
+            val intent = Intent(context, EditContactActivity::class.java)
+            intent.putExtra(KEY_ACTION, id)
+            return intent
+        }
+    }
+
 }

@@ -20,11 +20,11 @@ interface ContactDao {
     fun getSearchList(search: String?): List<Contacts>?
 
     @Insert
-    fun insertContact(contact: Contacts)
+    fun insertContact(contact: Contacts?)
 
     @Update
-    fun updateContact(contact: Contacts)
+    fun updateContact(contact: Contacts?)
 
     @Delete
-    fun deleteContact(contact: Contacts)
+    fun deleteContact(contact: Contacts?)
 }

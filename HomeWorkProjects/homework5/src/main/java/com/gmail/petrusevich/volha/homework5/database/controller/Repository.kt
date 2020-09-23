@@ -11,10 +11,10 @@ interface Repository {
 
     fun getSearchContacts(search: String?): List<Contacts>?
 
-    fun insert(contact: Contacts)
+    fun insert(contact: Contacts?)
 
-    fun delete(contact: Contacts)
+    fun delete(contact: Contacts?)
 
-    fun update(contact: Contacts)
+    fun update(contact: Contacts?)
 
 }

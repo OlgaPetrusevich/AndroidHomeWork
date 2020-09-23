@@ -15,13 +15,6 @@ import kotlinx.android.synthetic.main.activity_add_contact.*
 
 class AddContactActivity : AppCompatActivity(), View.OnClickListener {
 
-    companion object {
-        fun newIntent(context: Context?): Intent {
-            return Intent(context, AddContactActivity::class.java)
-        }
-    }
-
-    private var dataType: ContactDataType = ContactDataType.PHONE
     private val contactRepository: ContactRepository
 
     init {
@@ -48,18 +41,16 @@ class AddContactActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun clickRadioGroup() {
-        viewGroupButton.setOnCheckedChangeListener { viewGroupButton, i ->
+        viewGroupButton.setOnCheckedChangeListener { viewGroupButton, viewButton ->
 
-            when (i) {
+            when (viewButton) {
                 R.id.viewPhoneButton -> {
                     viewDataAdd.setRawInputType(InputType.TYPE_CLASS_PHONE)
                     viewDataAdd.setHint(R.string.phone)
-                    dataType = ContactDataType.PHONE
                 }
                 R.id.viewEmailButton -> {
                     viewDataAdd.setRawInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS)
                     viewDataAdd.setHint(R.string.email)
-                    dataType = ContactDataType.MAIL
                 }
             }
         }
@@ -68,8 +59,23 @@ class AddContactActivity : AppCompatActivity(), View.OnClickListener {
     private fun addContact(contactRepository: ContactRepository) {
         val name = viewNameAdd.text.toString()
         val data = viewDataAdd.text.toString()
-        val contact = Contacts(name, data, dataType)
+        val contact = contactTypeDefinition(name, data)
         contactRepository.insert(contact)
+    }
+
+    private fun contactTypeDefinition(name: String, data: String): Contacts {
+        val dataType = if (viewPhoneButton.isChecked) {
+            ContactDataType.PHONE
+        } else {
+            ContactDataType.MAIL
+        }
+        return Contacts(name, data, dataType)
+    }
+
+    companion object {
+        fun newIntent(context: Context?): Intent {
+            return Intent(context, AddContactActivity::class.java)
+        }
     }
 
 }
