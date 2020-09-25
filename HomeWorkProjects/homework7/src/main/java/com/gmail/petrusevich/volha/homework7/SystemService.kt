@@ -8,16 +8,14 @@ class SystemService : Service() {
 
     private val logger = Logger()
 
-    override fun onBind(p0: Intent?): IBinder? {
-        TODO("Not yet implemented")
+    override fun onBind(intent: Intent?): IBinder? {
+        return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-//        val text = intent?.getStringExtra("KEY")
-        logger.writeLog(intent?.action.toString())
+        val text = LoggerTextController.textLogger
+        logger.writeLog(text)
         return super.onStartCommand(intent, flags, startId)
-
-
 
     }
 

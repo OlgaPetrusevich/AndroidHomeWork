@@ -8,14 +8,13 @@ import java.util.*
 
 class SystemBroadcastReceiver : BroadcastReceiver() {
 
-    private val logger = Logger()
 
     override fun onReceive(context: Context?, intent: Intent?) {
 
         Log.d("broadcast", intent?.action.toString())
         val calendar = Calendar.getInstance()
         val date = calendar.time
-        val text = logger.createText(date, intent)
-        intent?.putExtra("KEY", text)
+        LoggerTextController.getLoggerText(date, intent)
+        context?.startService(Intent(context, SystemService::class.java))
     }
 }

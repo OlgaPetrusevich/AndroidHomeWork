@@ -7,15 +7,19 @@ import android.os.Bundle
 class MainActivity : AppCompatActivity() {
 
     private val broadcastReceiverController by lazy { BroadcastReceiverController() }
+    private val systemBroadcastReceiver by lazy { SystemBroadcastReceiver() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val systemBroadcastReceiver = SystemBroadcastReceiver()
         registerReceiver(systemBroadcastReceiver, broadcastReceiverController.createBroadcastReceiver())
-        val fileDirCreate = FileDirCreate.getInstance()
-        fileDirCreate.getFileDir(this, StorageType.INTERNAL)
-        startService(Intent(this, SystemService::class.java))
+        FileDirCreate.getFileDir(this, StorageType.INTERNAL)
+//        startService(Intent(this, SystemService::class.java))
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(systemBroadcastReceiver)
+    }
 }
