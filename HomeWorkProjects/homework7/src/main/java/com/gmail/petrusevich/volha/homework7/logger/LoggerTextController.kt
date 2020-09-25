@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework7
+package com.gmail.petrusevich.volha.homework7.logger
 
 import android.content.Intent
 import java.text.SimpleDateFormat
@@ -12,7 +12,7 @@ class LoggerTextController private constructor() {
         var textLogger: String? = null
 
         fun getLoggerText(date: Date, intent: Intent?) {
-            val dateFormatter = SimpleDateFormat(DATE_FORMAT, Locale.US)
+            val dateFormatter = SimpleDateFormat(DATE_FORMAT, Locale.ROOT)
             val dateText = dateFormatter.format(date)
             textLogger = "$dateText - ${intent?.action.toString()} \n"
         }

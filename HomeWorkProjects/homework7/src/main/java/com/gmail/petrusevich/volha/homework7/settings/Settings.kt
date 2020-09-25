@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework7
+package com.gmail.petrusevich.volha.homework7.settings
 
 import android.content.Context
 import android.content.SharedPreferences

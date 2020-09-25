@@ -1,7 +1,8 @@
-package com.gmail.petrusevich.volha.homework7
+package com.gmail.petrusevich.volha.homework7.logger
 
 import android.content.Context
 import android.os.Environment
+import com.gmail.petrusevich.volha.homework7.settings.StorageType
 import java.io.File
 
 class FileDirCreate private constructor() {

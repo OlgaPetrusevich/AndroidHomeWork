@@ -3,6 +3,12 @@ package com.gmail.petrusevich.volha.homework7
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.gmail.petrusevich.volha.homework7.broadcastreceiver.BroadcastReceiverController
+import com.gmail.petrusevich.volha.homework7.broadcastreceiver.SystemBroadcastReceiver
+import com.gmail.petrusevich.volha.homework7.logger.FileDirCreate
+import com.gmail.petrusevich.volha.homework7.service.SystemService
+import com.gmail.petrusevich.volha.homework7.settings.Settings
+import com.gmail.petrusevich.volha.homework7.settings.StorageType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

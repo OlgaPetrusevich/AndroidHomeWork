@@ -1,8 +1,10 @@
-package com.gmail.petrusevich.volha.homework7
+package com.gmail.petrusevich.volha.homework7.service
 
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import com.gmail.petrusevich.volha.homework7.logger.Logger
+import com.gmail.petrusevich.volha.homework7.logger.LoggerTextController
 
 class SystemService : Service() {
 
