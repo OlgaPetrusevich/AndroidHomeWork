@@ -22,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RadioGroup
+        android:id="@+id/viewGroupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -29,6 +30,7 @@
         app:layout_constraintTop_toBottomOf="@id/viewTextSelect">
 
         <RadioButton
+            android:id="@+id/viewButtonInternal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="10dp"
@@ -36,6 +38,7 @@
             android:textAllCaps="true" />
 
         <RadioButton
+            android:id="@+id/viewButtonExternal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/storage_external"

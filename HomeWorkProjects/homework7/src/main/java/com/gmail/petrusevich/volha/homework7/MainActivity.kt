@@ -3,17 +3,25 @@ package com.gmail.petrusevich.volha.homework7
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val broadcastReceiverController by lazy { BroadcastReceiverController() }
     private val systemBroadcastReceiver by lazy { SystemBroadcastReceiver() }
+    private val settings by lazy { Settings.getInstance(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        settings.loadSettings(viewGroupButton)
         registerReceiver(systemBroadcastReceiver, broadcastReceiverController.createBroadcastReceiver())
-        FileDirCreate.getFileDir(this, StorageType.INTERNAL)
+        getStorageType()
+        viewGroupButton.setOnCheckedChangeListener { viewGroupButton, viewButton ->
+            getStorageType()
+            settings.saveSettings(viewGroupButton)
+
+        }
     }
 
 
@@ -21,6 +29,14 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         unregisterReceiver(systemBroadcastReceiver)
         stopService(Intent(this, SystemService::class.java))
+    }
+
+    private fun getStorageType() {
+        if (viewButtonInternal.isChecked) {
+            FileDirCreate.getFileDir(this, StorageType.INTERNAL)
+        } else {
+            FileDirCreate.getFileDir(this, StorageType.EXTERNAL)
+        }
     }
 
 }
