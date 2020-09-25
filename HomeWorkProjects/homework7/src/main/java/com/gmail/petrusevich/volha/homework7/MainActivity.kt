@@ -1,8 +1,8 @@
 package com.gmail.petrusevich.volha.homework7
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,12 +14,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         registerReceiver(systemBroadcastReceiver, broadcastReceiverController.createBroadcastReceiver())
         FileDirCreate.getFileDir(this, StorageType.INTERNAL)
-//        startService(Intent(this, SystemService::class.java))
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(systemBroadcastReceiver)
+        stopService(Intent(this, SystemService::class.java))
     }
+
 }
