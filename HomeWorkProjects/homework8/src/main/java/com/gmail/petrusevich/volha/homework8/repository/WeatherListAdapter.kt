@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.homework8.R
 import com.gmail.petrusevich.volha.homework8.presenter.WeatherListItemModel
 import kotlinx.android.synthetic.main.item_view.view.*
@@ -44,6 +45,9 @@ class WeatherListAdapter : RecyclerView.Adapter<WeatherListAdapter.WeatherListVi
                     viewItemDescription.text = description
                     viewItemDegree.text = temperature
                 }
+                Glide.with(itemView.context)
+                        .load(urlIcon)
+                        .into(itemView.viewItemImage)
             }
         }
     }

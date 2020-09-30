@@ -8,6 +8,7 @@ import okhttp3.ResponseBody
 
 private const val API_KEY = "b77fe0d92cd8dbddc0e12ab3753c5cd0"
 
+
 class WeatherRepositoryImpl(
         private val okHttpClient: OkHttpClient,
         private val weatherDataModelMapper: (String) -> List<WeatherDataModel>
@@ -15,7 +16,7 @@ class WeatherRepositoryImpl(
 
 
     override fun getHourlyWeatherList(city: String): Single<List<WeatherDataModel>> {
-        val url = "http://pro.openweathermap.org/data/2.5/forecast/hourly?q=$city&appid=$API_KEY"
+        val url = "http://api.openweathermap.org/data/2.5/forecast?q=$city&cnt=24&units=metric&appid=$API_KEY"
         val request = Request.Builder().url(url).build()
         return Single.create<String> { emitter ->
             okHttpClient.newCall(request).execute().use { response ->

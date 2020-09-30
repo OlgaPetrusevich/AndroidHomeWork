@@ -4,36 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/viewImageWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/viewTextCity"
+    <FrameLayout
+        android:id="@+id/viewFrameLayout"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/viewTextDegree"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewImageWeather" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/viewImageWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"/>
+
+        <TextView
+            android:id="@+id/viewTextCity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:textSize="50sp"/>
+    </FrameLayout>
 
     <TextView
         android:id="@+id/viewTextDegree"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="44sp"
+        app:layout_constraintBottom_toTopOf="@id/viewTextWeather"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewTextCity" />
+        app:layout_constraintTop_toBottomOf="@id/viewFrameLayout" />
 
     <TextView
         android:id="@+id/viewTextWeather"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
+        android:gravity="top|center_horizontal"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewTextDegree" />

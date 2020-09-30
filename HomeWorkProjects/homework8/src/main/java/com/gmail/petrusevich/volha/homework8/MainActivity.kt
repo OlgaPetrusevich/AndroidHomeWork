@@ -8,12 +8,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        showWeather()
         showHourlyWeather()
     }
 
     private fun showHourlyWeather() {
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentContainer, WeatherListFragment.gteInstance(), WeatherListFragment.TAG)
+                .add(R.id.fragmentContainerHourly, WeatherListFragment.gteInstance(), WeatherListFragment.TAG)
+                .commit()
+    }
+
+    private fun showWeather() {
+        supportFragmentManager.beginTransaction()
+                .add(R.id.fragmentContainer, WeatherFragment.gteInstance(), WeatherFragment.TAG)
                 .commit()
     }
 

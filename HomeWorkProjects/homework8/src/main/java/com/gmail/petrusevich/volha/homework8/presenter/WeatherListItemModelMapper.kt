@@ -9,7 +9,9 @@ class WeatherListItemModelMapper : (List<WeatherDataModel>) -> List<WeatherListI
                 WeatherListItemModel(
                         temperature = weatherDataModel.temperature,
                         description = weatherDataModel.description,
-                        time = weatherDataModel.time
+                        time = weatherDataModel.time,
+                        urlIcon = weatherDataModel.urlIcon,
+                        cityName = weatherDataModel.cityName
                 )
             }
 }
