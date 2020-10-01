@@ -1,6 +1,6 @@
 package com.gmail.petrusevich.volha.homework8.presenter
 
-import com.gmail.petrusevich.volha.homework8.WeatherListView
+import com.gmail.petrusevich.volha.homework8.fragmentsweather.WeatherListView
 import com.gmail.petrusevich.volha.homework8.repository.WeatherDataModel
 import com.gmail.petrusevich.volha.homework8.repository.WeatherRepositoryImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -13,6 +13,7 @@ class WeatherListPresenterImpl(
 ) : WeatherListPresenter {
 
     private var disposable: Disposable? = null
+
 
     override fun fetchWeatherList() {
         disposable = weatherRepositoryImpl.getHourlyWeatherList("Minsk")
@@ -28,4 +29,5 @@ class WeatherListPresenterImpl(
         disposable?.dispose()
         weatherListView = null
     }
+
 }

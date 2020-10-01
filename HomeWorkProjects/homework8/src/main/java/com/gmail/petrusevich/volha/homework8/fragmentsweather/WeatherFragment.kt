@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8
+package com.gmail.petrusevich.volha.homework8.fragmentsweather
 
 import android.os.Bundle
 import android.util.Log
@@ -7,19 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.gmail.petrusevich.volha.homework8.R
 import com.gmail.petrusevich.volha.homework8.presenter.WeatherListItemModel
 import com.gmail.petrusevich.volha.homework8.presenter.WeatherListItemModelMapper
 import com.gmail.petrusevich.volha.homework8.presenter.WeatherListPresenterImpl
 import com.gmail.petrusevich.volha.homework8.repository.WeatherDataModelMapper
-import com.gmail.petrusevich.volha.homework8.repository.WeatherListAdapter
 import com.gmail.petrusevich.volha.homework8.repository.WeatherRepositoryImpl
-import kotlinx.android.synthetic.main.fragment_weather_list.*
+import kotlinx.android.synthetic.main.fragment_weather.*
 import okhttp3.OkHttpClient
 
-class WeatherListFragment : Fragment(), WeatherListView {
-
+class WeatherFragment : Fragment(), WeatherListView {
 
     private val presenter: WeatherListPresenterImpl = WeatherListPresenterImpl(
             weatherRepositoryImpl = WeatherRepositoryImpl(OkHttpClient(), WeatherDataModelMapper()),
@@ -27,16 +25,8 @@ class WeatherListFragment : Fragment(), WeatherListView {
             weatherListItemModelMapper = WeatherListItemModelMapper()
     )
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-            inflater.inflate(R.layout.fragment_weather_list, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewWeatherList.apply {
-            adapter = WeatherListAdapter()
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        }
-    }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+            inflater.inflate(R.layout.fragment_weather, container, false)
 
     override fun onResume() {
         super.onResume()
@@ -49,7 +39,12 @@ class WeatherListFragment : Fragment(), WeatherListView {
     }
 
     override fun showWeatherList(weatherList: List<WeatherListItemModel>) {
-        (viewWeatherList.adapter as? WeatherListAdapter)?.updateWeatherList(weatherList)
+        Glide.with(context!!)
+                .load(weatherList[0].urlIcon)
+                .into(viewImageWeather)
+        viewTextCity.text = weatherList[0].cityName
+        viewTextDegree.text = weatherList[0].temperature
+        viewTextWeather.text = weatherList[0].description
     }
 
     override fun onError(errorMessage: String) {
@@ -58,7 +53,7 @@ class WeatherListFragment : Fragment(), WeatherListView {
     }
 
     companion object {
-        const val TAG = "WeatherListFragment"
-        fun gteInstance() = WeatherListFragment()
+        const val TAG = "WeatherFragment"
+        fun gteInstance() = WeatherFragment()
     }
 }

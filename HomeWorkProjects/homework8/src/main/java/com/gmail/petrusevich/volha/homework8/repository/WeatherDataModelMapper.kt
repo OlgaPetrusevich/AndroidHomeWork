@@ -1,8 +1,8 @@
 package com.gmail.petrusevich.volha.homework8.repository
 
 import org.json.JSONObject
-import java.text.SimpleDateFormat
-import java.util.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 private const val JSON_ARRAY_NAME = "list"
@@ -19,7 +19,7 @@ class WeatherDataModelMapper : (String) -> List<WeatherDataModel> {
                     WeatherDataModel(
                             temperature = temperatureMapper(getJSONObject("main").getString("temp")),
                             description = getJSONArray("weather").getJSONObject(0).getString("description"),
-                            time = timeMapper(getLong("dt")),
+                            time = timeMapper(getString("dt_txt")),
                             urlIcon = urlToImageMapper(getJSONArray("weather").getJSONObject(0).getString("icon")),
                             cityName = jsonObject.getJSONObject("city").getString("name")
                     )
@@ -36,10 +36,10 @@ class WeatherDataModelMapper : (String) -> List<WeatherDataModel> {
         return "$temperature C"
     }
 
-    private fun timeMapper(date: Long): String {
-        val format = "HH:mm"
-        val dateTimeFormatter = SimpleDateFormat(format, Locale.getDefault())
-        return dateTimeFormatter.format(date)
+    private fun timeMapper(date: String): String {
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+        val dateTime = LocalDateTime.parse(date, formatter)
+        return "${dateTime.hour}:${dateTime.minute}"
     }
 
     private fun urlToImageMapper(imageId: String): String {
