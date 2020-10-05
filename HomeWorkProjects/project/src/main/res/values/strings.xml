@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">project</string>
+    <string name="gym_tab">Тренировки</string>
+    <string name="history_tab">История</string>
+    <string name="profile_tab">Профиль</string>
+    <string name="settings_tab">Настройки</string>
+    <string name="progress_tab">Прогресс</string>
+    <string name="gender_text">Пол</string>
+    <string name="age_text">Возраст</string>
+    <string name="height_text">Рост</string>
+    <string name="weight_text">Вес</string>
+    <string name="index_weight_text">Индекс массы тела</string>
+    <string name="program_text">Программа тренировки</string>
+
+</resources>
