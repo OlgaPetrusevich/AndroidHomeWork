@@ -1,0 +1,4 @@
+#Sun Jul 26 21:45:41 MSK 2020
+base.0=C\:\\MyProgramm\\RepositoryAndroid\\AndroidHomeWork\\AndroidHomeWork\\HomeWorkProjects\\homework2\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
