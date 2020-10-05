@@ -1,4 +1,4 @@
 
-include ':homework3'
+include ':homework7'
 include ':app'
 rootProject.name = "HomeWorkProjects"
