@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Custom view</string>
+    <string name="coordinatesClick">Нажаты координаты: [%d;%d] </string>
+    <string name="titleMessage">Choose how to send your message</string>
+    <string name="toastMessage">Toast</string>
+    <string name="snackBarMessage">SnackBar</string>
+    <string name="save">Save settings</string>
+    <string name="settings">Settings</string>
+</resources>
