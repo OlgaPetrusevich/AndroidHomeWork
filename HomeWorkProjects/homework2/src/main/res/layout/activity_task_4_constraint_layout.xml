@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/titleAndroid"
+        style="@style/TextDarkBold30"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:text="@string/android_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageTitle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/userText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleAndroid" />
+
+    <TextView
+        android:id="@+id/postText"
+        style="@style/TextDark15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/post_name"
+        app:layout_constraintBottom_toTopOf="@id/userText"
+        app:layout_constraintLeft_toRightOf="@id/imageTitle"
+        app:layout_constraintRight_toLeftOf="@id/followerText"
+        app:layout_constraintTop_toBottomOf="@id/titleAndroid" />
+
+    <TextView
+        android:id="@+id/followerText"
+        style="@style/TextDark15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/follower_name"
+        app:layout_constraintBottom_toTopOf="@id/userText"
+        app:layout_constraintLeft_toRightOf="@id/postText"
+        app:layout_constraintRight_toLeftOf="@id/followingText"
+        app:layout_constraintTop_toBottomOf="@id/titleAndroid" />
+
+    <TextView
+        android:id="@+id/followingText"
+        style="@style/TextDark15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/following_name"
+        app:layout_constraintBottom_toTopOf="@id/userText"
+        app:layout_constraintLeft_toRightOf="@id/followerText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleAndroid" />
+
+    <TextView
+        android:id="@+id/userText"
+        style="@style/TextDark18sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:text="@string/user_name"
+        app:layout_constraintBottom_toTopOf="@id/addressText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageTitle" />
+
+    <TextView
+        android:id="@+id/addressText"
+        style="@style/TextDark15sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/address_name"
+        app:layout_constraintBottom_toTopOf="@id/describeText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/userText" />
+
+    <TextView
+        android:id="@+id/describeText"
+        style="@style/TextDark15sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/describe_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressText" />
+
+    <ImageView
+        android:id="@+id/smallImage1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <ImageView
+        android:id="@+id/smallImage2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintLeft_toLeftOf="@id/smallImage1"
+        app:layout_constraintRight_toRightOf="@id/smallImage3"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <ImageView
+        android:id="@+id/smallImage3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintLeft_toLeftOf="@id/smallImage2"
+        app:layout_constraintRight_toRightOf="@id/smallImage4"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <ImageView
+        android:id="@+id/smallImage4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintLeft_toLeftOf="@id/smallImage3"
+        app:layout_constraintRight_toRightOf="@id/smallImage5"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <ImageView
+        android:id="@+id/smallImage5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintLeft_toLeftOf="@id/smallImage4"
+        app:layout_constraintRight_toRightOf="@id/smallImage6"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <ImageView
+        android:id="@+id/smallImage6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toTopOf="@id/directionButton"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/describeText" />
+
+    <Button
+        android:id="@+id/directionButton"
+        style="@style/task4BlueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/directions"
+        android:drawablePadding="10dp"
+        android:text="@string/direction_name"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/smallImage1" />
+
+    <Button
+        android:id="@+id/callButton"
+        style="@style/task4BlueText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/call"
+        android:drawablePadding="10dp"
+        android:text="@string/call_name"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintLeft_toRightOf="@id/directionButton"
+        app:layout_constraintRight_toLeftOf="@id/saveButton"
+        app:layout_constraintTop_toBottomOf="@id/smallImage3" />
+
+    <Button
+        android:id="@+id/saveButton"
+        style="@style/task4BlueText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/save_star"
+        android:drawablePadding="10dp"
+        android:text="@string/save_name"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintLeft_toRightOf="@id/callButton"
+        app:layout_constraintRight_toLeftOf="@id/websiteButton"
+        app:layout_constraintTop_toBottomOf="@id/smallImage4" />
+
+    <Button
+        android:id="@+id/websiteButton"
+        style="@style/task4BlueText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/website"
+        android:drawablePadding="10dp"
+        android:text="@string/website_name"
+        app:layout_constraintBottom_toTopOf="@id/line"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/smallImage6" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/line"
+        app:layout_constraintBottom_toTopOf="@id/largeImage1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/directionButton" />
+
+    <ImageView
+        android:id="@+id/largeImage1"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/largeImage2"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/largeImage1"
+        app:layout_constraintRight_toLeftOf="@id/largeImage3" />
+
+    <ImageView
+        android:id="@+id/largeImage3"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:contentDescription="@string/android_name"
+        android:src="@drawable/square_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
