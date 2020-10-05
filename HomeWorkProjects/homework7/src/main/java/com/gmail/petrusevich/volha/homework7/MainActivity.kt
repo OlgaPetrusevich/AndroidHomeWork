@@ -37,11 +37,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getStorageType() {
-        if (viewButtonInternal.isChecked) {
-            FileDirCreate.getFileDir(this, StorageType.INTERNAL)
+        val storageType = if (viewButtonInternal.isChecked) {
+            StorageType.INTERNAL
         } else {
-            FileDirCreate.getFileDir(this, StorageType.EXTERNAL)
+            StorageType.EXTERNAL
         }
+        FileDirCreate.getFileDir(this, storageType)
     }
 
 }

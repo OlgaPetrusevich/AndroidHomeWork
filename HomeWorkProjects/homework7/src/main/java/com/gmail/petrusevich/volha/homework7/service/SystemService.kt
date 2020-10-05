@@ -12,6 +12,7 @@ import com.gmail.petrusevich.volha.homework7.logger.Logger
 import com.gmail.petrusevich.volha.homework7.logger.LoggerTextController
 
 private const val CHANNEL_ID = "SYSTEM_CHANNEL"
+private const val FOREGROUND_ID = 1
 private const val TITLE_NOTIFICATION = "System message"
 private const val TEXT_NOTIFICATION = "Logger is working"
 
@@ -37,10 +38,7 @@ class SystemService : Service() {
                 .setContentTitle(TITLE_NOTIFICATION)
                 .setContentText(TEXT_NOTIFICATION)
                 .build()
-        val notificationChannel = NotificationChannel(CHANNEL_ID, CHANNEL_ID, NotificationManager.IMPORTANCE_MIN)
-        val notificationManager: NotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(notificationChannel)
-        notificationManager.notify(1, notification)
+        startForeground(FOREGROUND_ID, notification)
     }
 
 
