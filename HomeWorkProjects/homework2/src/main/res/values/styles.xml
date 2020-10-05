@@ -1,0 +1,86 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="Task2RelativeTheme" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginStart">10dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:background">@drawable/line_background</item>
+    </style>
+
+    <style name="TextViewWithLine" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@drawable/line_background</item>
+    </style>
+
+    <style name="Task3EditTheme" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:background">@drawable/edit_task_3</item>
+        <item name="android:paddingStart">30dp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Task3Button" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:background">@drawable/button_task_3</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="TextDarkBold30" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextDark18spBold" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="task4BlueText" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="TextDark18sp" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+    </style>
+
+    <style name="TextDark15sp" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+    </style>
+
+    <style name="TextDark80sp" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">80sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:background">@color/colorGrey</item>
+    </style>
+
+    <style name="TextLight80sp" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">80sp</item>
+        <item name="android:textColor">@color/colorDark</item>
+        <item name="android:background">@color/colorLightGrey</item>
+    </style>
+
+    <style name="TextWhite20sp" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
