@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/attraction"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/attraction_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/dining"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/dining_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/education"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/educate_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/family"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/fam_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/health"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/health_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/office"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/office_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/promotion"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/promo_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/radio"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/radio_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/recipe"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/recipe_name" />
+
+    <TextView
+        style="@style/TextDark18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:drawableStart="@drawable/sport"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:text="@string/sport_name" />
+
+</LinearLayout>
