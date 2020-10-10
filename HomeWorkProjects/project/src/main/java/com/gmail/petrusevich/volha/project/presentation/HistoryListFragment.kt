@@ -1,10 +1,11 @@
-package com.gmail.petrusevich.volha.project
+package com.gmail.petrusevich.volha.project.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.gmail.petrusevich.volha.project.R
 
 class HistoryListFragment : Fragment() {
 
@@ -13,6 +14,6 @@ class HistoryListFragment : Fragment() {
 
     companion object {
         const val TAG = "HistoryListFragment"
-        fun gteInstance() = HistoryListFragment()
+        fun getInstance() = HistoryListFragment()
     }
 }

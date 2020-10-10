@@ -1,0 +1,24 @@
+package com.gmail.petrusevich.volha.project.datasource.database
+
+import androidx.room.*
+import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
+
+@Dao
+interface ExerciseDao {
+
+    @Query("SELECT * FROM Exercise")
+    fun getAllExercise(): List<ExerciseDataModel>?
+
+    @Query("SELECT * FROM Exercise WHERE id = :idExercise")
+    fun getExercise(idExercise: String): ExerciseDataModel
+
+    @Insert
+    fun insertExercise(exerciseDataModel: ExerciseDataModel)
+
+    @Update
+    fun updateExercise(exerciseDataModel: ExerciseDataModel)
+
+    @Delete
+    fun deleteExercise(exerciseDataModel: ExerciseDataModel)
+
+}

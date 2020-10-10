@@ -19,6 +19,15 @@
         <item name="android:textColorHint">@color/colorAccent</item>
     </style>
 
+    <style name="TextTitle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="TextCategory" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">35sp</item>
+    </style>
+
 
 
 </resources>

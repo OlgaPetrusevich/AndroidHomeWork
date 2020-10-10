@@ -1,14 +1,15 @@
-package com.gmail.petrusevich.volha.project
+package com.gmail.petrusevich.volha.project.presentation.exerciselist
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.gmail.petrusevich.volha.project.R
 import kotlinx.android.synthetic.main.item_exercise.view.*
 
 class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ExerciseListViewHolder>() {
 
-    private val exerciseDataModelList = mutableListOf<ExerciseDataModel>()
+    private val exerciseItemList = mutableListOf<ExerciseItemModel>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseListViewHolder {
@@ -16,14 +17,14 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ExerciseLis
         return ExerciseListViewHolder(view)
     }
 
-    override fun getItemCount(): Int = exerciseDataModelList.size
+    override fun getItemCount(): Int = exerciseItemList.size
 
     override fun onBindViewHolder(holder: ExerciseListViewHolder, position: Int) {
-        holder.bind(exerciseDataModelList[position])
+        holder.bind(exerciseItemList[position])
     }
 
-    fun updateExerciseList(exerciseList: List<ExerciseDataModel>) {
-        exerciseDataModelList.apply {
+    fun updateExerciseList(exerciseList: List<ExerciseItemModel>) {
+        exerciseItemList.apply {
             clear()
             addAll(exerciseList)
         }
@@ -34,10 +35,10 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ExerciseLis
             itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(exerciseDataModel: ExerciseDataModel) {
-            itemView.viewCategoryExercise.text = exerciseDataModel.nameExercise
-            itemView.viewNameExercise.text = exerciseDataModel.nameExercise
-            itemView.viewDescriptionExercise.text = exerciseDataModel.descriptionExercise
+        fun bind(exerciseItemList: ExerciseItemModel) {
+            itemView.viewCategoryExercise.text = exerciseItemList.categoryName
+            itemView.viewNameExercise.text = exerciseItemList.exerciseName
+            itemView.viewDescriptionExercise.text = exerciseItemList.exerciseDescription
         }
     }
 
