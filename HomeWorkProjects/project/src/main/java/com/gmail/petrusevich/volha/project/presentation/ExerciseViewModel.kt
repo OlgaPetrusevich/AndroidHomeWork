@@ -1,14 +1,14 @@
-package com.gmail.petrusevich.volha.project.presentation.exerciselist
+package com.gmail.petrusevich.volha.project.presentation
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
 import com.gmail.petrusevich.volha.project.domain.ExerciseDomainModel
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCase
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCaseImpl
-import io.reactivex.Observable
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModel
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModelMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers

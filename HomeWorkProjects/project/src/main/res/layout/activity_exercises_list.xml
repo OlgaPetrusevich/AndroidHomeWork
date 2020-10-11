@@ -11,12 +11,12 @@
         android:layout_height="wrap_content"
         android:background="@color/colorLightGrey"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/viewGymList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/viewGymList"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--        />-->
 
     <FrameLayout
         android:id="@+id/fragmentExerciseContainer"

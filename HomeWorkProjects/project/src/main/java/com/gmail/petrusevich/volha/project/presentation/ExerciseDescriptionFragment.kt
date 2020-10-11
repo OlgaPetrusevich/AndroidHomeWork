@@ -11,9 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseListAdapter
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseViewModel
-import kotlinx.android.synthetic.main.activity_exercises_list.*
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
 class ExerciseDescriptionFragment : Fragment() {

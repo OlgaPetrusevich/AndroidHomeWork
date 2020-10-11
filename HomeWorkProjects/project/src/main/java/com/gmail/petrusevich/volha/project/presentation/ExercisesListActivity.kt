@@ -3,40 +3,21 @@ package com.gmail.petrusevich.volha.project.presentation
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.data.CategoryType
-import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseListAdapter
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseViewModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ItemOnClickListener
 import kotlinx.android.synthetic.main.activity_exercises_list.*
 
 private const val CATEGORY_KEY = "categoryKey"
 
-class ExercisesListActivity : AppCompatActivity(), ItemOnClickListener {
+class ExercisesListActivity : AppCompatActivity() {
 
-    private val exerciseViewModel by lazy { ViewModelProvider(this).get(ExerciseViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercises_list)
-        viewGymList.adapter = ExerciseListAdapter(this)
-        with(this) {
-            exerciseViewModel.exercisesLiveData.observe(this, Observer { items ->
-                (viewGymList.adapter as? ExerciseListAdapter)?.updateExerciseList(items)
-            })
-            exerciseViewModel.exercisesErrorLiveData.observe(this, Observer { throwable ->
-                Log.d("Error", throwable.message!!)
-            })
-        }
-        exerciseViewModel.getCategoryExercises(getCategoryType())
+        loadFragment(ListExerciseFragment.getInstance(), setBundle())
         getTitleToolbar()
     }
 
@@ -53,25 +34,19 @@ class ExercisesListActivity : AppCompatActivity(), ItemOnClickListener {
         }
     }
 
-    override fun itemOnClick(position: Int) {
-        val idExercise: String = exerciseViewModel.exercisesLiveData.value!![position].id
-        viewGymList.visibility = View.GONE
-        loadFragment(ExerciseDescriptionFragment.getInstance(), setBundle(idExercise))
+    private fun setBundle(): Bundle {
+        val categoryType = getCategoryType()
+        val bundle = Bundle()
+        bundle.putString("keyBundle", categoryType)
+        return bundle
     }
 
     private fun loadFragment(fragment: Fragment, bundle: Bundle): Boolean {
         fragment.arguments = bundle
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentExerciseContainer, fragment)
-                .addToBackStack(null)
                 .commit()
         return true
-    }
-
-    private fun setBundle(idExercise: String): Bundle{
-        val bundle = Bundle()
-        bundle.putString("key", idExercise)
-        return bundle
     }
 
     companion object {
