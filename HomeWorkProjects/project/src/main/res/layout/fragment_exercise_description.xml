@@ -6,38 +6,59 @@
     android:orientation="vertical">
 
     <ImageView
-        android:layout_gravity="center"
         android:id="@+id/viewImageExercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        />
+        android:layout_gravity="center"
+        android:layout_weight="3" />
 
     <TextView
-        android:layout_gravity="center"
-        android:layout_weight="3"
         android:id="@+id/viewTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-       />
-
-    <Button
         android:layout_gravity="center"
-        android:id="@+id/viewTimerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/button_circle"
-        android:text="1:00" />
+        android:layout_margin="15dp"
+        android:layout_weight="3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/viewSetsText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <Button
+            android:id="@+id/viewTimerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/button_circle"
+            android:text="1:00"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/viewSetsText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/viewIterationText"/>
+
+        <TextView
+            android:id="@+id/viewIterationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <Button
         android:id="@+id/viewEndExerciseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/end_exercise_text"
-       />
+        android:text="@string/end_exercise_text" />
 
 
 </LinearLayout>

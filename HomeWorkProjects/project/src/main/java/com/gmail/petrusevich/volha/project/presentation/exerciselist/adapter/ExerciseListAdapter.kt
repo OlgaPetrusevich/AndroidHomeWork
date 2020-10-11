@@ -1,10 +1,11 @@
-package com.gmail.petrusevich.volha.project.presentation.exerciselist
+package com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.gmail.petrusevich.volha.project.R
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
 import kotlinx.android.synthetic.main.item_exercise.view.*
 
 class ExerciseListAdapter(

@@ -5,7 +5,9 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "Exercise", foreignKeys = [ForeignKey(entity = ImageExerciseDataModel::class, parentColumns = ["imageId"],
-        childColumns = ["urlToImage"])])
+        childColumns = ["urlToImage"]), ForeignKey(entity = SetsExerciseData::class, parentColumns = ["setId"],
+        childColumns = ["setsExercise"]), ForeignKey(entity = IterationExerciseData::class, parentColumns = ["iterationId"],
+        childColumns = ["iterationExercise"])])
 class ExerciseDataModel(
         val categoryName: String,
         val exerciseName: String,

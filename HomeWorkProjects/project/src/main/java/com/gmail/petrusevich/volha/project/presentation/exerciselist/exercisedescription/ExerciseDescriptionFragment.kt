@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.presentation
+package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.project.R
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModel
+import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
 class ExerciseDescriptionFragment : Fragment() {
@@ -25,8 +26,8 @@ class ExerciseDescriptionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(viewLifecycleOwner) {
-            exerciseViewModel.exerciseDescriptionLiveData.observe(this, Observer {
-                item -> setDescription(item)
+            exerciseViewModel.exerciseDescriptionLiveData.observe(this, Observer { item ->
+                setDescription(item)
             })
             exerciseViewModel.exercisesErrorLiveData.observe(this, Observer { throwable ->
                 Log.d("Error", throwable.message!!)
@@ -36,15 +37,14 @@ class ExerciseDescriptionFragment : Fragment() {
 
     }
 
-    private fun setDescription(exerciseItemModel: ExerciseItemModel){
+    private fun setDescription(exerciseItemModel: ExerciseItemModel) {
         Glide.with(context!!)
                 .load(exerciseItemModel.urlToImage)
                 .into(viewImageExercise)
         viewTextDescription.text = exerciseItemModel.exerciseDescription
-
+        viewSetsText.text = exerciseItemModel.setsExercise
+        viewIterationText.text = exerciseItemModel.iterationExercise
     }
-
-
 
 
     companion object {

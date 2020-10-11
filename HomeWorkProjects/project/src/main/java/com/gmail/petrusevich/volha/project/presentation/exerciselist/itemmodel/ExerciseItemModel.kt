@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.presentation.exerciselist
+package com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel
 
 
 class ExerciseItemModel(

@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.presentation
+package com.gmail.petrusevich.volha.project.presentation.exerciselist
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseListAdapter
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ItemOnClickListener
+import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription.ExerciseDescriptionFragment
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.ExerciseListAdapter
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.ItemOnClickListener
 import kotlinx.android.synthetic.main.fragment_exercises_list.*
 
 class ListExerciseFragment : Fragment(), ItemOnClickListener {

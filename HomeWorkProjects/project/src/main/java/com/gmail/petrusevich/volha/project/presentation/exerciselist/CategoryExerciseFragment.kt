@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.presentation
+package com.gmail.petrusevich.volha.project.presentation.exerciselist
 
 import android.os.Bundle
 import android.view.LayoutInflater

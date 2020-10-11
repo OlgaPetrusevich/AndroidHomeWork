@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData
 import com.gmail.petrusevich.volha.project.domain.ExerciseDomainModel
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCase
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCaseImpl
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.ExerciseItemModelMapper
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModelMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
