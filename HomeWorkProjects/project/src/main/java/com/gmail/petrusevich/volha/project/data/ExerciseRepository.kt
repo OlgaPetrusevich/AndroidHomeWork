@@ -7,6 +7,9 @@ import io.reactivex.Single
 
 interface ExerciseRepository {
 
-    fun getExerciseList(): Observable<List<ExerciseDomainModel>>
+    fun getExerciseList(idCategory: String): Observable<List<ExerciseDomainModel>>
+
+    fun getExerciseDescription(idExercise: String): Observable<ExerciseDomainModel>
+
 
 }

@@ -11,7 +11,11 @@ class ExerciseListUseCaseImpl(
 
     private val repository: ExerciseRepository = ExerciseRepositoryImpl(context)
 
-    override fun getExerciseList(): Observable<List<ExerciseDomainModel>> =
-            repository.getExerciseList()
+    override fun getExerciseList(idCategory: String): Observable<List<ExerciseDomainModel>> =
+            repository.getExerciseList(idCategory)
+
+    override fun getExerciseDescription(idExercise: String): Observable<ExerciseDomainModel> =
+            repository.getExerciseDescription(idExercise)
+
 
 }

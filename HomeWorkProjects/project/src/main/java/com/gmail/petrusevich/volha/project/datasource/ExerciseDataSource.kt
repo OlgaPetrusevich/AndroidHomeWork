@@ -6,5 +6,9 @@ import io.reactivex.Single
 
 interface ExerciseDataSource {
 
-    fun getExercises(): Observable<List<ExerciseDataModel>>
+    fun getExercises(idCategory: String): Observable<List<ExerciseDataModel>>
+
+    fun getExerciseDescription(idExercise: String): Observable<ExerciseDataModel>
+
+
 }

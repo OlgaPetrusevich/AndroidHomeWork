@@ -7,14 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.gmail.petrusevich.volha.project.R
 import kotlinx.android.synthetic.main.item_exercise.view.*
 
-class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ExerciseListViewHolder>() {
+class ExerciseListAdapter(
+        private val itemOnClickListener: ItemOnClickListener
+) : RecyclerView.Adapter<ExerciseListAdapter.ExerciseListViewHolder>() {
 
     private val exerciseItemList = mutableListOf<ExerciseItemModel>()
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseListViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_exercise, parent, false)
-        return ExerciseListViewHolder(view)
+        return ExerciseListViewHolder(view, itemOnClickListener)
     }
 
     override fun getItemCount(): Int = exerciseItemList.size
@@ -32,13 +34,19 @@ class ExerciseListAdapter : RecyclerView.Adapter<ExerciseListAdapter.ExerciseLis
     }
 
     class ExerciseListViewHolder(
-            itemView: View
-    ) : RecyclerView.ViewHolder(itemView) {
+            itemView: View,  private val itemOnClickListener: ItemOnClickListener
+    ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         fun bind(exerciseItemList: ExerciseItemModel) {
-            itemView.viewCategoryExercise.text = exerciseItemList.categoryName
             itemView.viewNameExercise.text = exerciseItemList.exerciseName
-            itemView.viewDescriptionExercise.text = exerciseItemList.exerciseDescription
+        }
+
+        override fun onClick(view: View?) {
+            itemOnClickListener.itemOnClick(adapterPosition)
         }
     }
 

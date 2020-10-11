@@ -12,6 +12,9 @@ interface ExerciseDao {
     @Query("SELECT * FROM Exercise WHERE id = :idExercise")
     fun getExercise(idExercise: String): ExerciseDataModel
 
+    @Query("SELECT * FROM Exercise WHERE categoryName = :idCategory")
+    fun getCategoryExercises(idCategory: String): List<ExerciseDataModel>
+
     @Insert
     fun insertExercise(exerciseDataModel: ExerciseDataModel)
 

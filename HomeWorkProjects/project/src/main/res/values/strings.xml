@@ -11,8 +11,9 @@
     <string name="weight_text">Вес</string>
     <string name="index_weight_text">Индекс массы тела</string>
     <string name="program_text">Программа тренировки</string>
-    <string name="category_rear_text">Грудь и спина</string>
+    <string name="category_rear_text">Тренировка спины и груди</string>
     <string name="category_legs_text">Тренировка ног</string>
-    <string name="category_arms_text">Плечи и руки</string>
+    <string name="category_arms_text">Тренировка плеч и рук</string>
+    <string name="end_exercise_text">Завершить упражнение</string>
 
 </resources>

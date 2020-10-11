@@ -1,14 +1,14 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
 import com.gmail.petrusevich.volha.project.domain.ExerciseDomainModel
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCase
 import com.gmail.petrusevich.volha.project.domain.ExerciseListUseCaseImpl
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -25,15 +25,28 @@ class ExerciseViewModel(context: Application) : AndroidViewModel(context) {
     private val mutableExercisesErrorLiveData = MutableLiveData<Throwable>()
     val exercisesErrorLiveData: LiveData<Throwable> = mutableExercisesErrorLiveData
 
+   private val mutableExerciseDescriptionLiveData = MutableLiveData<ExerciseItemModel>()
+    val exerciseDescriptionLiveData: LiveData<ExerciseItemModel> =  mutableExerciseDescriptionLiveData
 
-    fun getAllExercises() {
-        disposable = exerciseListUseCase.getExerciseList()
+    fun getCategoryExercises(idCategory: String) {
+        disposable = exerciseListUseCase.getExerciseList(idCategory)
                 .subscribeOn(Schedulers.computation())
                 .map { domainModelList -> exercisesViewModelMapper(domainModelList) }
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { itemList -> mutableExercisesLiveData.value = itemList },
                         { throwable -> mutableExercisesErrorLiveData.value = throwable }
+                )
+    }
+
+    fun getExerciseDescription(idExercise: String){
+        disposable = exerciseListUseCase.getExerciseDescription(idExercise)
+                .subscribeOn(Schedulers.computation())
+                .map { exerciseDomainData -> exercisesViewModelMapper(mutableListOf(exerciseDomainData))[0] }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {itemExercise -> mutableExerciseDescriptionLiveData.value = itemExercise},
+                        {throwable -> mutableExercisesErrorLiveData.value = throwable}
                 )
     }
 

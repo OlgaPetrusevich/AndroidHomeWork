@@ -22,7 +22,7 @@
          />
 
     <Button
-        android:id="@+id/viewCategoryThird"
+        android:id="@+id/viewCategorySecond"
         style="@style/TextCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
         android:text="@string/category_legs_text" />
 
     <Button
-        android:id="@+id/viewCategorySecond"
+        android:id="@+id/viewCategoryThird"
         style="@style/TextCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

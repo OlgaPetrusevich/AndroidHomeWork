@@ -16,7 +16,7 @@ abstract class ExerciseDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): ExerciseDatabase? {
             if (instance == null) {
-                instance = Room.databaseBuilder(context, ExerciseDatabase::class.java, "ExerciseDatabase4")
+                instance = Room.databaseBuilder(context, ExerciseDatabase::class.java, "ExerciseDatabase5")
                         .createFromAsset("ExerciseDatabasecopy.db")
                         .build()
             }
