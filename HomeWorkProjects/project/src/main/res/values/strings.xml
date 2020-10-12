@@ -18,5 +18,7 @@
     <string name="weight_exercise_text">Кг</string>
     <string name="set_exercise_text">Количество подходов</string>
     <string name="start_exercise_text">Начать подход</string>
+    <string name="max_weight_text">Максимальный вес</string>
+
 
 </resources>
