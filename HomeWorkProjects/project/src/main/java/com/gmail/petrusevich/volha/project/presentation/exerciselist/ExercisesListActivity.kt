@@ -18,20 +18,12 @@ class ExercisesListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercises_list)
         loadFragment(ListExerciseFragment.getInstance(), setBundle())
-        getTitleToolbar()
     }
+
 
     private fun getCategoryType(): String {
         val categoryType: CategoryType = intent.getSerializableExtra(CATEGORY_KEY) as CategoryType
         return categoryType.ordinal.toString()
-    }
-
-    private fun getTitleToolbar() {
-        when (intent.getSerializableExtra(CATEGORY_KEY) as CategoryType) {
-            CategoryType.REAR_CATEGORY -> viewActivityExercisesToolbar.setTitle(R.string.category_rear_text)
-            CategoryType.LEGS_CATEGORY -> viewActivityExercisesToolbar.setTitle(R.string.category_legs_text)
-            CategoryType.ARMS_CATEGORY -> viewActivityExercisesToolbar.setTitle(R.string.category_arms_text)
-        }
     }
 
     private fun setBundle(): Bundle {

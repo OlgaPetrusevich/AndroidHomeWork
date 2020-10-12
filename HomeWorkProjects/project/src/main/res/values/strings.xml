@@ -15,5 +15,8 @@
     <string name="category_legs_text">Тренировка ног</string>
     <string name="category_arms_text">Тренировка плеч и рук</string>
     <string name="end_exercise_text">Завершить упражнение</string>
+    <string name="weight_exercise_text">Кг</string>
+    <string name="set_exercise_text">Количество подходов</string>
+    <string name="start_exercise_text">Начать подход</string>
 
 </resources>

@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
+import com.gmail.petrusevich.volha.project.data.CategoryType
 import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
-import com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription.ExerciseDescriptionFragment
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.ExerciseListAdapter
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.ItemOnClickListener
+import com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription.ExerciseDescriptionFragment
+import kotlinx.android.synthetic.main.activity_exercises_list.*
 import kotlinx.android.synthetic.main.fragment_exercises_list.*
 
 class ListExerciseFragment : Fragment(), ItemOnClickListener {
@@ -35,6 +37,7 @@ class ListExerciseFragment : Fragment(), ItemOnClickListener {
         }
         val categoryType = arguments?.getString("keyBundle")
         exerciseViewModel.getCategoryExercises(categoryType!!)
+        getTitleToolbar(categoryType)
     }
 
     override fun itemOnClick(position: Int) {
@@ -49,6 +52,14 @@ class ListExerciseFragment : Fragment(), ItemOnClickListener {
                 .addToBackStack(null)
                 .commit()
         return true
+    }
+
+    private fun getTitleToolbar(categoryType: String) {
+        when (categoryType) {
+            CategoryType.REAR_CATEGORY.ordinal.toString() -> activity?.viewActivityExercisesToolbar?.setTitle(R.string.category_rear_text)
+            CategoryType.LEGS_CATEGORY.ordinal.toString() -> activity?.viewActivityExercisesToolbar?.setTitle(R.string.category_legs_text)
+            CategoryType.ARMS_CATEGORY.ordinal.toString() -> activity?.viewActivityExercisesToolbar?.setTitle(R.string.category_arms_text)
+        }
     }
 
     private fun setBundle(idExercise: String): Bundle {

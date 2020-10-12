@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Sets")
 class SetsExerciseData(
-        val setsExercise: String,
+        val setsExercise: Int,
         @PrimaryKey
         val setId: String
 )

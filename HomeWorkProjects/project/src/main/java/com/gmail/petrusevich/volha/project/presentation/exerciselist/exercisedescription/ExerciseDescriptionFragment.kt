@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
+import kotlinx.android.synthetic.main.activity_exercises_list.*
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
 class ExerciseDescriptionFragment : Fragment() {
@@ -42,8 +43,7 @@ class ExerciseDescriptionFragment : Fragment() {
                 .load(exerciseItemModel.urlToImage)
                 .into(viewImageExercise)
         viewTextDescription.text = exerciseItemModel.exerciseDescription
-        viewSetsText.text = exerciseItemModel.setsExercise
-        viewIterationText.text = exerciseItemModel.iterationExercise
+        activity?.viewActivityExercisesToolbar?.title = exerciseItemModel.exerciseName
     }
 
 

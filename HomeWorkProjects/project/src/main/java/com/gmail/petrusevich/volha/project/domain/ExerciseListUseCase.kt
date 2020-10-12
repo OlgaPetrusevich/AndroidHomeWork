@@ -1,6 +1,5 @@
 package com.gmail.petrusevich.volha.project.domain
 
-import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
 import io.reactivex.Observable
 
 interface ExerciseListUseCase {

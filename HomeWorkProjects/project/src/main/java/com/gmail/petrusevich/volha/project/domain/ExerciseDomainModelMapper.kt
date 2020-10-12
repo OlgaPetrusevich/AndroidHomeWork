@@ -10,8 +10,6 @@ class ExerciseDomainModelMapper : (List<ExerciseDataModel>) -> List<ExerciseDoma
                         categoryName = item.categoryName,
                         exerciseName = item.exerciseName,
                         exerciseDescription = item.exerciseDescription,
-                        setsExercise = item.setsExercise,
-                        iterationExercise = item.iterationExercise,
                         urlToImage = item.urlToImage,
                         id = item.id
                 )
