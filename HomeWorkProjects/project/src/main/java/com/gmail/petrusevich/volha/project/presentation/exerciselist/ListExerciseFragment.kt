@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_exercises_list.*
 class ListExerciseFragment : Fragment(), ItemOnClickListener {
 
     private val exerciseViewModel by lazy { ViewModelProvider(this).get(ExerciseViewModel::class.java) }
-
+    private val categoryType by lazy { arguments?.getString("keyBundle") }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_exercises_list, container, false)
 
@@ -35,14 +35,14 @@ class ListExerciseFragment : Fragment(), ItemOnClickListener {
                 Log.d("Error", throwable.message!!)
             })
         }
-        val categoryType = arguments?.getString("keyBundle")
+
         exerciseViewModel.getCategoryExercises(categoryType!!)
-        getTitleToolbar(categoryType)
+        getTitleToolbar(categoryType as String)
     }
 
     override fun itemOnClick(position: Int) {
         val idExercise: String = exerciseViewModel.exercisesLiveData.value!![position].id
-        loadFragment(ExerciseDescriptionFragment.getInstance(), setBundle(idExercise))
+        loadFragment(ExerciseDescriptionFragment.getInstance(), setBundle(idExercise, categoryType!!))
     }
 
     private fun loadFragment(fragment: Fragment, bundle: Bundle): Boolean {
@@ -62,9 +62,10 @@ class ListExerciseFragment : Fragment(), ItemOnClickListener {
         }
     }
 
-    private fun setBundle(idExercise: String): Bundle {
+    private fun setBundle(idExercise: String, categoryType: String): Bundle {
         val bundle = Bundle()
         bundle.putString("key", idExercise)
+        bundle.putString("keyCategory", categoryType)
         return bundle
     }
 

@@ -11,20 +11,21 @@
         app:title="@string/history_tab"
         android:background="@color/colorLightGrey"/>
 
-    <TextView
+
+    <CalendarView
+        android:id="@+id/viewCalendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+        android:layout_height="wrap_content" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:layout_margin="15dp">
 
     <Button
         android:id="@+id/viewHistoryCategoryRear"
-        style="@style/TextCategory"
+        style="@style/TextCategoryHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/category_rear_text"
@@ -36,7 +37,7 @@
 
     <Button
         android:id="@+id/viewHistoryCategoryLegs"
-        style="@style/TextCategory"
+        style="@style/TextCategoryHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/category_legs_text"
@@ -47,7 +48,7 @@
 
     <Button
         android:id="@+id/viewHistoryCategoryArms"
-        style="@style/TextCategory"
+        style="@style/TextCategoryHistory"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:text="@string/category_arms_text"

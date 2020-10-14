@@ -1,6 +1,7 @@
 package com.gmail.petrusevich.volha.project.domain
 
 import android.content.Context
+import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import com.gmail.petrusevich.volha.project.data.repository.HistoryExercisesRepository
 import com.gmail.petrusevich.volha.project.data.repository.HistoryExercisesRepositoryImpl
 import io.reactivex.Observable
@@ -17,6 +18,10 @@ class HistoryListUseCaseImpl(
 
     override fun getCategoryHistory(categoryName: String): Observable<List<HistoryExerciseDomainModel>> =
             repository.getCategoryHistory(categoryName)
+
+    override fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel) {
+        repository.insertExerciseToHistory(historyExerciseData)
+    }
 
 
 }

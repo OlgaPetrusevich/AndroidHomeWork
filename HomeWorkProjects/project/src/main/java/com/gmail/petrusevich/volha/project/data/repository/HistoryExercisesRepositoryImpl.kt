@@ -1,6 +1,7 @@
 package com.gmail.petrusevich.volha.project.data.repository
 
 import android.content.Context
+import com.gmail.petrusevich.volha.project.data.HistoryDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import com.gmail.petrusevich.volha.project.datasource.historydatasource.DatabaseHistoryDataSource
 import com.gmail.petrusevich.volha.project.datasource.historydatasource.HistoryExercisesDataSource
@@ -8,14 +9,16 @@ import com.gmail.petrusevich.volha.project.domain.HistoryDomainModelMapper
 import com.gmail.petrusevich.volha.project.domain.HistoryExerciseDomainModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HistoryExercisesRepositoryImpl(
         context: Context
 ) : HistoryExercisesRepository {
 
-    private val historyExercisesDataSource: HistoryExercisesDataSource<HistoryExerciseDataModel> = DatabaseHistoryDataSource(context)
-    private val historyDomainModelMapper: (List<HistoryExerciseDataModel>) -> List<HistoryExerciseDomainModel> = HistoryDomainModelMapper()
+    private val historyExercisesDataSource: HistoryExercisesDataSource = DatabaseHistoryDataSource(context)
+    private val historyDomainModelMapper: (List<HistoryDatabaseModel>) -> List<HistoryExerciseDomainModel> = HistoryDomainModelMapper()
 
     override fun getDateHistory(date: String): Observable<List<HistoryExerciseDomainModel>> =
             historyExercisesDataSource.getDateHistory(date)
@@ -26,4 +29,11 @@ class HistoryExercisesRepositoryImpl(
             historyExercisesDataSource.getCategoryHistory(categoryName)
                     .subscribeOn(Schedulers.computation())
                     .map { list -> historyDomainModelMapper(list) }
+
+    override fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel) {
+        historyExercisesDataSource.insertExerciseToHistory(historyExerciseData)
+    }
+
+
+
 }

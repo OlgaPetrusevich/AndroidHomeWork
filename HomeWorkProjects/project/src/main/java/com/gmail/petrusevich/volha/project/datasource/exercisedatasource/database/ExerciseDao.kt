@@ -9,8 +9,7 @@ interface ExerciseDao {
     @Query("SELECT * FROM Exercise")
     fun getAllExercise(): List<ExerciseDataModel>?
 
-    @Query("SELECT * FROM Exercise, Images" +
-            " WHERE id = :idExercise AND Exercise.urlToImage = imageId")
+    @Query("SELECT * FROM Exercise WHERE id = :idExercise")
     fun getExercise(idExercise: String): ExerciseDataModel
 
     @Query("SELECT * FROM Exercise WHERE categoryName = :idCategory")

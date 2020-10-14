@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gmail.petrusevich.volha.project.data.*
 
-@Database(entities = [ExerciseDataModel::class, HistoryExerciseDataModel::class, SetsExerciseData::class,
+@Database(entities = [ExerciseNameData::class, HistoryExerciseDataModel::class,
     CategoryExerciseData::class], version = 1)
 abstract class HistoryExercisesDatabase : RoomDatabase() {
 
@@ -17,11 +17,14 @@ abstract class HistoryExercisesDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): HistoryExercisesDatabase? {
             if (instance == null) {
-                instance = Room.databaseBuilder(context, HistoryExercisesDatabase::class.java, "HistoryExercisesDatabase")
+                instance = Room.databaseBuilder(context, HistoryExercisesDatabase::class.java, "HistoryExercisesDB011")
+                        .createFromAsset("HistoryDB.db")
                         .build()
             }
             return instance
         }
 
     }
+
+
 }

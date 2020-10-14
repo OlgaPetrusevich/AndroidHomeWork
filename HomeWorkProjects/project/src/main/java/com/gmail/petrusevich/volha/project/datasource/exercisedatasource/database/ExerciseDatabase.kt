@@ -5,9 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.gmail.petrusevich.volha.project.data.ExerciseDataModel
-import com.gmail.petrusevich.volha.project.data.ImageExerciseDataModel
 
-@Database(entities = [ExerciseDataModel::class, ImageExerciseDataModel::class], version = 1)
+@Database(entities = [ExerciseDataModel::class], version = 1)
 abstract class ExerciseDatabase : RoomDatabase() {
 
     abstract fun getExerciseDao(): ExerciseDao
@@ -17,7 +16,7 @@ abstract class ExerciseDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): ExerciseDatabase? {
             if (instance == null) {
-                instance = Room.databaseBuilder(context, ExerciseDatabase::class.java, "ExerciseDatabase10")
+                instance = Room.databaseBuilder(context, ExerciseDatabase::class.java, "ExerciseDatabase11")
                         .createFromAsset("ExerciseDatabasecopy.db")
                         .build()
             }

@@ -5,15 +5,17 @@ import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 import java.util.*
 
-@Entity(tableName = "HistoryExercises", foreignKeys = [ForeignKey(entity = ExerciseDataModel::class, parentColumns = ["id"],
+
+@Entity(tableName = "HistoryExercises", foreignKeys = [ForeignKey(entity = ExerciseNameData::class, parentColumns = ["id"],
         childColumns = ["exerciseId"]), ForeignKey(entity = CategoryExerciseData::class, parentColumns = ["categoryId"],
-        childColumns = ["categoryId"]), ForeignKey(entity = SetsExerciseData::class, parentColumns = ["setId"],
-        childColumns = ["setId"])])
+        childColumns = ["categoryId"])])
 class HistoryExerciseDataModel(
         val date: String,
         val exerciseId: String,
+        val timeExercise: Long,
+        val setId: String,
         val categoryId: String,
-        val setId: String
+        val maxWeight: String
 ) {
 
     @PrimaryKey

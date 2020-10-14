@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         BottomNavigationView.OnNavigationItemSelectedListener() {
             when (it.itemId) {
                 R.id.viewNavigationGym -> loadFragment(CategoryExerciseFragment.getInstance())
-                R.id.viewNavigationHistory -> loadFragment(HistoryListFragment.getInstance())
+                R.id.viewNavigationHistory -> loadFragment(HistoryTabFragment.getInstance())
                 R.id.viewNavigationProfile -> loadFragment(UserFragment.getInstance())
                 else -> false
             }

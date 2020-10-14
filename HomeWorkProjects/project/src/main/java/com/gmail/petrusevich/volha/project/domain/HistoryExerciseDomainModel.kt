@@ -8,9 +8,11 @@ import java.util.*
 
 class HistoryExerciseDomainModel(
         val date: String,
-        val exerciseId: String,
-        val categoryId: String,
-        val setId: String
+        val exerciseName: String,
+        val timeExercise: Long,
+        val categoryName: String,
+        val setId: String,
+        val maxWeight: String
 )
 //{
 //    var historyId: String = UUID.randomUUID().toString()

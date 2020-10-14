@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import com.gmail.petrusevich.volha.project.domain.HistoryExerciseDomainModel
 import com.gmail.petrusevich.volha.project.domain.HistoryListUseCase
 import com.gmail.petrusevich.volha.project.domain.HistoryListUseCaseImpl
@@ -46,6 +47,11 @@ class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context
                         { throwable -> mutableHistoryErrorLiveData.value = throwable }
                 )
     }
+
+    fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel) {
+        historyListUseCase.insertExerciseToHistory(historyExerciseData)
+    }
+
 
     override fun onCleared() {
         super.onCleared()
