@@ -3,6 +3,10 @@ package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisede
 import android.widget.EditText
 import android.widget.TextView
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ExerciseDescriptionController {
@@ -21,11 +25,20 @@ class ExerciseDescriptionController {
         view.text = amountSets.toString()
     }
 
+    private fun convertDateTime(): String{
+        val format = "yyyy-MM-dd"
+        val formatter = DateTimeFormatter.ofPattern(format)
+        val simpleFormatter = SimpleDateFormat(format, Locale.getDefault())
+        val date = simpleFormatter.format(timeStart)
+        val dateLocal = LocalDate.parse(date, formatter)
+        return dateLocal.toString()
+    }
+
     fun getStartTime(): Long = timeStart
 
     fun writeHistoryExercise(exerciseId: String, categoryId: String, view: TextView): HistoryExerciseDataModel {
         val sets = view.text.toString()
-        return HistoryExerciseDataModel(timeStart.toString(), exerciseId, getTimeExercise(), sets, categoryId, getMaxWeight())
+        return HistoryExerciseDataModel(convertDateTime(), exerciseId, getTimeExercise(), sets, categoryId, getMaxWeight())
     }
 
     fun getWeightSet(view: EditText) {

@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.presentation
+package com.gmail.petrusevich.volha.project.presentation.historylist
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
+import com.gmail.petrusevich.volha.project.presentation.HistoryExercisesViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.HistoryListAdapter
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.android.synthetic.main.fragment_history_list.*
+import kotlinx.android.synthetic.main.fragment_history_tab.*
 
 class HistoryListFragment : Fragment() {
 

@@ -12,5 +12,7 @@ interface HistoryExercisesDataSource {
 
     fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel)
 
+    fun getAllDate(): Observable<List<String>>
+
 
 }

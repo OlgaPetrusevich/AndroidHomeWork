@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/viewSetExercise"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/set_exercise_text"
             app:layout_constraintBottom_toTopOf="@id/viewSetAmountExercise"
@@ -48,16 +48,28 @@
             app:layout_constraintRight_toLeftOf="@id/viewWeightText"
             app:layout_constraintTop_toBottomOf="@id/viewSetExercise" />
 
+        <TextView
+            android:id="@+id/viewText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/weight_text"
+            app:layout_constraintBottom_toTopOf="@id/viewWeightText"
+            app:layout_constraintLeft_toRightOf="@id/viewSetExercise"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <EditText
             android:id="@+id/viewWeightText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/weight_exercise_text"
+            android:inputType="number"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/viewSetExercise"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/viewText" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button

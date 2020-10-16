@@ -10,4 +10,6 @@ interface HistoryListUseCase {
     fun getCategoryHistory(categoryName: String): Observable<List<HistoryExerciseDomainModel>>
 
     fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel)
+
+    fun getAllDate(): Observable<List<String>>
 }

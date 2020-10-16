@@ -23,5 +23,9 @@ class HistoryListUseCaseImpl(
         repository.insertExerciseToHistory(historyExerciseData)
     }
 
+    override fun getAllDate(): Observable<List<String>> =
+        repository.getAllDate()
+
+
 
 }

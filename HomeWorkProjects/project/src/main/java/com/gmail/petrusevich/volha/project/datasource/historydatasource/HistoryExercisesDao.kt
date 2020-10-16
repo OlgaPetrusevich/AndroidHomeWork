@@ -7,6 +7,9 @@ import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 @Dao
 interface HistoryExercisesDao {
 
+    @Query("SELECT date FROM HistoryExercises, CategoryExercise, ExerciseName WHERE CategoryExercise.categoryId = HistoryExercises.categoryId AND ExerciseName.id = HistoryExercises.exerciseId")
+    fun getAllDate(): List<String>
+
     @Query("SELECT * FROM HistoryExercises, CategoryExercise, ExerciseName WHERE HistoryExercises.date = :date AND CategoryExercise.categoryId = HistoryExercises.categoryId AND ExerciseName.id = HistoryExercises.exerciseId")
     fun getDateHistory(date: String): List<HistoryDatabaseModel>
 

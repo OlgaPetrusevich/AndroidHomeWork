@@ -1,19 +1,27 @@
 package com.gmail.petrusevich.volha.project.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.data.CategoryType
+import com.gmail.petrusevich.volha.project.presentation.historylist.CalendarController
+import com.gmail.petrusevich.volha.project.presentation.historylist.DayDecorator
+import com.gmail.petrusevich.volha.project.presentation.historylist.HistoryListFragment
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener
 import kotlinx.android.synthetic.main.fragment_history_tab.*
-import java.time.LocalDate
+import java.util.*
 
 class HistoryTabFragment : Fragment(), View.OnClickListener {
 
     private val calendarController by lazy { CalendarController() }
+    private val historyExercisesViewModel by lazy { ViewModelProvider(this).get(HistoryExercisesViewModel::class.java) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_history_tab, container, false)
@@ -23,10 +31,21 @@ class HistoryTabFragment : Fragment(), View.OnClickListener {
         viewHistoryCategoryRear.setOnClickListener(this)
         viewHistoryCategoryLegs.setOnClickListener(this)
         viewHistoryCategoryArms.setOnClickListener(this)
-        viewCalendar.setOnDateChangeListener(CalendarView.OnDateChangeListener { calendarView, year, month, dayOfMonth ->
-            val dateText = calendarController.getCalendarDate(year, month, dayOfMonth)
+        viewCalendar.setOnDateChangedListener(OnDateSelectedListener { widget, date, selected ->
+            val dateText = calendarController.getDateText(date)
             loadFragment(HistoryListFragment.getInstance(), setBundle(dateText))
         })
+        with(viewLifecycleOwner) {
+            historyExercisesViewModel.dateLiveData.observe(this, Observer { items ->
+                for (element in items) {
+                    viewCalendar.addDecorators(DayDecorator(activity!!, element))
+                }
+            })
+            historyExercisesViewModel.historyErrorLiveData.observe(this, Observer { throwable ->
+                Log.d("Error", throwable.message!!)
+            })
+        }
+        historyExercisesViewModel.getAllDate()
     }
 
     companion object {

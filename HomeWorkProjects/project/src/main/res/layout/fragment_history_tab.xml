@@ -12,10 +12,14 @@
         android:background="@color/colorLightGrey"/>
 
 
-    <CalendarView
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:id="@+id/viewCalendar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        app:mcv_showOtherDates="all"
+        android:layout_weight="2.5"
+        app:mcv_allowClickDaysOutsideCurrentMonth="true"
+        />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

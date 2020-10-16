@@ -9,8 +9,6 @@ import com.gmail.petrusevich.volha.project.domain.HistoryDomainModelMapper
 import com.gmail.petrusevich.volha.project.domain.HistoryExerciseDomainModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class HistoryExercisesRepositoryImpl(
@@ -34,6 +32,9 @@ class HistoryExercisesRepositoryImpl(
         historyExercisesDataSource.insertExerciseToHistory(historyExerciseData)
     }
 
+    override fun getAllDate(): Observable<List<String>> =
+            historyExercisesDataSource.getAllDate()
+                    .subscribeOn(Schedulers.computation())
 
 
 }

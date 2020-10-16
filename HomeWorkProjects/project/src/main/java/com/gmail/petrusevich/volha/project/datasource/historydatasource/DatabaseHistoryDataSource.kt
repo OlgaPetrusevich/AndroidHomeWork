@@ -43,5 +43,16 @@ class DatabaseHistoryDataSource(
                 .subscribe()
     }
 
+    override fun getAllDate(): Observable<List<String>> {
+        return Observable.create(ObservableOnSubscribe<List<String>>() {
+            val listDate: List<String>? = historyExercisesDao?.getAllDate()
+            if (listDate != null) {
+                it.onNext(listDate)
+            } else {
+                it.onNext(emptyList())
+            }
+        }).subscribeOn(Schedulers.computation())
+    }
+
 
 }

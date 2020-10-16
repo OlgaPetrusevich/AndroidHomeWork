@@ -10,6 +10,8 @@ import com.gmail.petrusevich.volha.project.domain.HistoryListUseCase
 import com.gmail.petrusevich.volha.project.domain.HistoryListUseCaseImpl
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.HistoryExerciseItemModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.HistoryItemModelMapper
+import com.gmail.petrusevich.volha.project.presentation.historylist.DateTypeMapper
+import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -17,6 +19,7 @@ import io.reactivex.schedulers.Schedulers
 class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context) {
 
     private val historyItemModelMapper: (List<HistoryExerciseDomainModel>) -> List<HistoryExerciseItemModel> = HistoryItemModelMapper()
+    private val dateTypeMapper: (List<String>) -> List<CalendarDay> = DateTypeMapper()
     private val historyListUseCase: HistoryListUseCase = HistoryListUseCaseImpl(context)
     private var disposable: Disposable? = null
 
@@ -25,6 +28,9 @@ class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context
 
     private val mutableHistoryErrorLiveData = MutableLiveData<Throwable>()
     val historyErrorLiveData: LiveData<Throwable> = mutableHistoryErrorLiveData
+
+    private val mutableDateLiveData = MutableLiveData<List<CalendarDay>>()
+    val dateLiveData: LiveData<List<CalendarDay>> = mutableDateLiveData
 
     fun getDateHistory(date: String) {
         disposable = historyListUseCase.getDateHistory(date)
@@ -50,6 +56,17 @@ class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context
 
     fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel) {
         historyListUseCase.insertExerciseToHistory(historyExerciseData)
+    }
+
+    fun getAllDate() {
+        disposable = historyListUseCase.getAllDate()
+                .subscribeOn(Schedulers.computation())
+                .map { listString -> dateTypeMapper(listString) }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { itemList -> mutableDateLiveData.value = itemList },
+                        { throwable -> mutableHistoryErrorLiveData.value = throwable }
+                )
     }
 
 
