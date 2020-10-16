@@ -1,6 +1,10 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +17,7 @@ import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
 import com.gmail.petrusevich.volha.project.presentation.HistoryExercisesViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
+import com.gmail.petrusevich.volha.project.service.TimerService
 import kotlinx.android.synthetic.main.activity_exercises_list.*
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
@@ -23,6 +28,8 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
     private val idExercise by lazy { arguments?.getString("key") }
     private val categoryType by lazy { arguments?.getString("keyCategory") }
     private val exerciseDescriptionController by lazy { ExerciseDescriptionController() }
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_exercise_description, container, false)
@@ -41,6 +48,7 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
         exerciseViewModel.getExerciseDescription(idExercise!!)
         viewStartExerciseButton.setOnClickListener(this)
         viewEndExerciseButton.setOnClickListener(this)
+        viewTimerButton.setOnClickListener(this)
     }
 
     private fun setDescription(exerciseItemModel: ExerciseItemModel) {
@@ -68,6 +76,11 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
                 val historyExerciseDataModel = exerciseDescriptionController.writeHistoryExercise(idExercise!!, categoryType!!, viewSetAmountExercise)
                 historyExercisesViewModel.insertExerciseToHistory(historyExerciseDataModel)
                 activity?.supportFragmentManager?.popBackStack()
+            }
+            viewTimerButton -> {
+                TimerService.getInstance(viewTimerButton)
+                context!!.startService(Intent(context, TimerService::class.java))
+
             }
         }
 

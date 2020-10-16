@@ -11,9 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.HistoryExercisesViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.adapter.HistoryListAdapter
-import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.android.synthetic.main.fragment_history_list.*
-import kotlinx.android.synthetic.main.fragment_history_tab.*
 
 class HistoryListFragment : Fragment() {
 
@@ -31,6 +29,9 @@ class HistoryListFragment : Fragment() {
         with(viewLifecycleOwner) {
             historyExercisesViewModel.historyLiveData.observe(this, Observer { items ->
                 (viewHistoryList.adapter as? HistoryListAdapter)?.updateExerciseList(items)
+                if(items.isEmpty()){
+                    viewEmptyListText.visibility = View.VISIBLE
+                }
             })
             historyExercisesViewModel.historyErrorLiveData.observe(this, Observer { throwable ->
                 Log.d("Error", throwable.message!!)

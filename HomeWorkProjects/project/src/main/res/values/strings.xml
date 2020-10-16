@@ -19,6 +19,7 @@
     <string name="set_exercise_text">Количество подходов</string>
     <string name="start_exercise_text">Начать подход</string>
     <string name="max_weight_text">Максимальный вес</string>
+    <string name="empty_list_text">История упражнений отсутствует</string>
 
 
 </resources>

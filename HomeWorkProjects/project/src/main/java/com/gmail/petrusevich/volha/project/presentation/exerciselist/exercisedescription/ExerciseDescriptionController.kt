@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription
 
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
@@ -8,6 +9,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.time.seconds
 
 class ExerciseDescriptionController {
 
@@ -49,6 +51,14 @@ class ExerciseDescriptionController {
     private fun getMaxWeight(): String {
         val sortList = weightList.sorted()
         return sortList.last().toString()
+    }
+
+    fun getStartTimer(view: Button){
+        val date = Calendar.getInstance()
+        val dateTimerStart = date.timeInMillis + 60000
+        val dateTimer = dateTimerStart - date.timeInMillis
+        val sec = dateTimer/1000
+        view.text = sec.toString()
     }
 
 

@@ -11,6 +11,14 @@
         app:title="@string/history_tab"
         android:background="@color/colorLightGrey"/>
 
+    <TextView
+        android:id="@+id/viewEmptyListText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/empty_list_text"
+        android:visibility="gone"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/viewHistoryList"
         android:layout_width="match_parent"

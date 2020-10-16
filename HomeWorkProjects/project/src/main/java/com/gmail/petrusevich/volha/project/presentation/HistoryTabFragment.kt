@@ -35,6 +35,7 @@ class HistoryTabFragment : Fragment(), View.OnClickListener {
             val dateText = calendarController.getDateText(date)
             loadFragment(HistoryListFragment.getInstance(), setBundle(dateText))
         })
+        viewCalendar.addDecorators(DayDecorator(activity!!, CalendarDay.today()))
         with(viewLifecycleOwner) {
             historyExercisesViewModel.dateLiveData.observe(this, Observer { items ->
                 for (element in items) {

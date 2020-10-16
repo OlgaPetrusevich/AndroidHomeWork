@@ -12,7 +12,11 @@ class DayDecorator(
         context: Context, currentDay: CalendarDay
 ) : DayViewDecorator {
 
-    private val drawable: Drawable? = ContextCompat.getDrawable(context, R.drawable.calendar_drawable)
+    private val drawable: Drawable? = if (currentDay == CalendarDay.today()){
+        ContextCompat.getDrawable(context, R.drawable.calendar_drawable_today)
+    } else{
+        ContextCompat.getDrawable(context, R.drawable.calendar_drawable)
+    }
     private var myDay = currentDay
 
     override fun shouldDecorate(day: CalendarDay?): Boolean {
