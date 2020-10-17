@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.project.datasource.historydatasource
 
+import com.gmail.petrusevich.volha.project.data.HistorySetsDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import io.reactivex.Observable
@@ -13,6 +14,8 @@ interface HistoryExercisesDataSource {
     fun insertExerciseToHistory(historyExerciseData: HistoryExerciseDataModel)
 
     fun getAllDate(): Observable<List<String>>
+
+    fun getSumSets(): Observable<List<HistorySetsDatabaseModel>>
 
 
 }

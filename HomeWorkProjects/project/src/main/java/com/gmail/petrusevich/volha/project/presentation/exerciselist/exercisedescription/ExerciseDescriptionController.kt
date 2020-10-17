@@ -44,8 +44,12 @@ class ExerciseDescriptionController {
     }
 
     fun getWeightSet(view: EditText) {
-        val weight: Int = view.text.toString().toInt()
-        weightList.add(weight)
+        val weight = view.text.toString()
+        if (weight.isNotEmpty()) {
+            weightList.add(weight.toInt())
+        } else{
+            weightList.add(0)
+        }
     }
 
     private fun getMaxWeight(): String {
@@ -53,13 +57,7 @@ class ExerciseDescriptionController {
         return sortList.last().toString()
     }
 
-    fun getStartTimer(view: Button){
-        val date = Calendar.getInstance()
-        val dateTimerStart = date.timeInMillis + 60000
-        val dateTimer = dateTimerStart - date.timeInMillis
-        val sec = dateTimer/1000
-        view.text = sec.toString()
-    }
+
 
 
 }

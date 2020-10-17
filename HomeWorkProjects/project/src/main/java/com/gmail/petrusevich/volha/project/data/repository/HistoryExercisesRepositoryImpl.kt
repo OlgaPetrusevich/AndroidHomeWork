@@ -1,6 +1,7 @@
 package com.gmail.petrusevich.volha.project.data.repository
 
 import android.content.Context
+import com.gmail.petrusevich.volha.project.data.HistorySetsDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import com.gmail.petrusevich.volha.project.datasource.historydatasource.DatabaseHistoryDataSource
@@ -35,6 +36,11 @@ class HistoryExercisesRepositoryImpl(
     override fun getAllDate(): Observable<List<String>> =
             historyExercisesDataSource.getAllDate()
                     .subscribeOn(Schedulers.computation())
+
+    override fun getSumSets(): Observable<List<HistorySetsDatabaseModel>> =
+        historyExercisesDataSource.getSumSets()
+                .subscribeOn(Schedulers.computation())
+
 
 
 }

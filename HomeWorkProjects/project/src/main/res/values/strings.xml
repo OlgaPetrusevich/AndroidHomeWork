@@ -4,11 +4,13 @@
     <string name="history_tab">История</string>
     <string name="profile_tab">Профиль</string>
     <string name="settings_tab">Настройки</string>
-    <string name="progress_tab">Прогресс</string>
+    <string name="progress_text">Мой прогресс</string>
     <string name="gender_text">Пол</string>
     <string name="age_text">Возраст</string>
     <string name="height_text">Рост</string>
     <string name="weight_text">Вес</string>
+    <string name="weight_text_empty">Введите вес</string>
+    <string name="height_text_empty">Введите рост</string>
     <string name="index_weight_text">Индекс массы тела</string>
     <string name="program_text">Программа тренировки</string>
     <string name="category_rear_text">Тренировка спины и груди</string>
@@ -20,6 +22,7 @@
     <string name="start_exercise_text">Начать подход</string>
     <string name="max_weight_text">Максимальный вес</string>
     <string name="empty_list_text">История упражнений отсутствует</string>
+    <string name="index_text">Введите рост и вес</string>
 
 
 </resources>

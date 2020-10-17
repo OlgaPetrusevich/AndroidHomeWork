@@ -8,6 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "ExerciseName")
 class ExerciseNameData(
         val exerciseName: String,
+        val muscleName: String,
         @PrimaryKey
         val id: String
 )

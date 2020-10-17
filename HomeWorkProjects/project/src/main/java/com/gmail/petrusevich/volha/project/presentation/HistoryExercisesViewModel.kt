@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.gmail.petrusevich.volha.project.data.HistorySetsDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import com.gmail.petrusevich.volha.project.domain.HistoryExerciseDomainModel
 import com.gmail.petrusevich.volha.project.domain.HistoryListUseCase
@@ -31,6 +32,9 @@ class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context
 
     private val mutableDateLiveData = MutableLiveData<List<CalendarDay>>()
     val dateLiveData: LiveData<List<CalendarDay>> = mutableDateLiveData
+
+    private val mutableSetsLiveData = MutableLiveData<List<HistorySetsDatabaseModel>>()
+    val setsLiveData: LiveData<List<HistorySetsDatabaseModel>> = mutableSetsLiveData
 
     fun getDateHistory(date: String) {
         disposable = historyListUseCase.getDateHistory(date)
@@ -65,6 +69,16 @@ class HistoryExercisesViewModel(context: Application) : AndroidViewModel(context
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { itemList -> mutableDateLiveData.value = itemList },
+                        { throwable -> mutableHistoryErrorLiveData.value = throwable }
+                )
+    }
+
+    fun getSumSets() {
+        disposable = historyListUseCase.getSumSets()
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        { itemList -> mutableSetsLiveData.value = itemList },
                         { throwable -> mutableHistoryErrorLiveData.value = throwable }
                 )
     }

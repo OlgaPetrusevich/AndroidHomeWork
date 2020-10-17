@@ -1,6 +1,7 @@
 package com.gmail.petrusevich.volha.project.datasource.historydatasource
 
 import android.content.Context
+import com.gmail.petrusevich.volha.project.data.HistorySetsDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryDatabaseModel
 import com.gmail.petrusevich.volha.project.data.HistoryExerciseDataModel
 import io.reactivex.Observable
@@ -48,6 +49,17 @@ class DatabaseHistoryDataSource(
             val listDate: List<String>? = historyExercisesDao?.getAllDate()
             if (listDate != null) {
                 it.onNext(listDate)
+            } else {
+                it.onNext(emptyList())
+            }
+        }).subscribeOn(Schedulers.computation())
+    }
+
+    override fun getSumSets(): Observable<List<HistorySetsDatabaseModel>> {
+        return Observable.create(ObservableOnSubscribe<List<HistorySetsDatabaseModel>>() {
+            val listSets: List<HistorySetsDatabaseModel>? = historyExercisesDao?.getSumSets()
+            if (listSets != null) {
+                it.onNext(listSets)
             } else {
                 it.onNext(emptyList())
             }

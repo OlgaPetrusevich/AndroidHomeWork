@@ -1,6 +1,5 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,7 +16,7 @@ import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
 import com.gmail.petrusevich.volha.project.presentation.HistoryExercisesViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
-import com.gmail.petrusevich.volha.project.service.TimerService
+import com.gmail.petrusevich.volha.project.service.TimerController
 import kotlinx.android.synthetic.main.activity_exercises_list.*
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
@@ -28,7 +27,17 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
     private val idExercise by lazy { arguments?.getString("key") }
     private val categoryType by lazy { arguments?.getString("keyCategory") }
     private val exerciseDescriptionController by lazy { ExerciseDescriptionController() }
-
+    private val handler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(msg: Message) {
+            viewTimerButton.text = msg.obj.toString()
+            viewTimerButton.isClickable = false
+            if(msg.obj == 0){
+                viewTimerButton.isClickable = true
+                viewTimerButton.text = "1:00"
+            }
+        }
+    }
+    private val timerController = TimerController(handler)
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
@@ -78,12 +87,14 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
                 activity?.supportFragmentManager?.popBackStack()
             }
             viewTimerButton -> {
-                TimerService.getInstance(viewTimerButton)
-                context!!.startService(Intent(context, TimerService::class.java))
+//                context!!.startService(Intent(context, TimerService::class.java))
+                timerController.getTimerTime()
 
             }
         }
 
 
     }
+
+
 }
