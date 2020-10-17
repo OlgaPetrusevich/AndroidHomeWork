@@ -38,6 +38,7 @@
 
     <style name="TextCategory" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">35sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="TextCategoryHistory" parent="Widget.MaterialComponents.TextView">

@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,12 @@ class CategoryExerciseFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val inputStream = activity?.applicationContext?.assets?.open("1.png")
+        val inputStream1 = activity?.applicationContext?.assets?.open("2.png")
+        val inputStream2 = activity?.applicationContext?.assets?.open("3.png")
+        viewCategoryFirst.background = Drawable.createFromStream(inputStream, null)
+        viewCategorySecond.background = Drawable.createFromStream(inputStream1, null)
+        viewCategoryThird.background = Drawable.createFromStream(inputStream2, null)
         viewCategoryFirst.setOnClickListener(this)
         viewCategorySecond.setOnClickListener(this)
         viewCategoryThird.setOnClickListener(this)

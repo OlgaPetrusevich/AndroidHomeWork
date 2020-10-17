@@ -31,6 +31,7 @@ class HistoryTabFragment : Fragment(), View.OnClickListener {
         viewHistoryCategoryRear.setOnClickListener(this)
         viewHistoryCategoryLegs.setOnClickListener(this)
         viewHistoryCategoryArms.setOnClickListener(this)
+
         viewCalendar.setOnDateChangedListener(OnDateSelectedListener { widget, date, selected ->
             val dateText = calendarController.getDateText(date)
             loadFragment(HistoryListFragment.getInstance(), setBundle(dateText))
