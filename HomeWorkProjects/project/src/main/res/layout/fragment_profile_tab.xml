@@ -14,17 +14,27 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/profile_tab" />
 
+    <ImageView
+        android:id="@+id/viewPhoto"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_profile"
+        app:layout_constraintRight_toLeftOf="@id/weightText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbarProfileTab"
+        app:layout_constraintBottom_toTopOf="@id/viewProgressButton"/>
 
     <TextView
         android:id="@+id/weightText"
         style="@style/TextStyleProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:text="@string/weight_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/heightText"
-        app:layout_constraintTop_toBottomOf="@id/viewToolbarProfileTab" />
+        app:layout_constraintLeft_toRightOf="@id/viewPhoto"
+        app:layout_constraintRight_toLeftOf="@id/viewWeightText"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbarProfileTab"
+        app:layout_constraintBottom_toTopOf="@id/viewHeightText"/>
 
     <EditText
         android:id="@+id/viewWeightText"
@@ -34,20 +44,21 @@
         android:gravity="center"
         android:hint="@string/weight_text_empty"
         android:inputType="number"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/viewHeightText"
-        app:layout_constraintTop_toBottomOf="@id/weightText" />
+        app:layout_constraintLeft_toRightOf="@id/weightText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolbarProfileTab" />
 
     <TextView
         android:id="@+id/heightText"
         style="@style/TextStyleProfile"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="center_vertical"
         android:text="@string/height_text"
-        app:layout_constraintLeft_toRightOf="@id/weightText"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewToolbarProfileTab" />
+        app:layout_constraintLeft_toRightOf="@id/viewPhoto"
+        app:layout_constraintRight_toLeftOf="@id/viewWeightText"
+        app:layout_constraintTop_toBottomOf="@id/weightText"
+        app:layout_constraintBottom_toBottomOf="@id/viewHeightText"/>
 
     <EditText
         android:id="@+id/viewHeightText"
@@ -57,9 +68,9 @@
         android:gravity="center"
         android:hint="@string/height_text_empty"
         android:inputType="number"
-        app:layout_constraintLeft_toRightOf="@id/viewWeightText"
+        app:layout_constraintLeft_toRightOf="@id/heightText"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/heightText" />
+        app:layout_constraintTop_toBottomOf="@id/viewWeightText"  />
 
     <TextView
         android:id="@+id/indexWeightText"
@@ -67,9 +78,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/index_weight_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/viewIndexWeightText"
-        app:layout_constraintTop_toBottomOf="@id/viewWeightText" />
+        app:layout_constraintLeft_toRightOf="@id/viewPhoto"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewHeightText" />
 
     <TextView
         android:id="@+id/viewIndexWeightText"
@@ -78,9 +89,19 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/index_text"
-        app:layout_constraintLeft_toRightOf="@id/indexWeightText"
+        app:layout_constraintLeft_toRightOf="@id/viewPhoto"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewHeightText" />
+        app:layout_constraintTop_toBottomOf="@id/indexWeightText" />
+
+    <TextView
+        android:id="@+id/viewIndexDescription"
+        style="@style/TextStyleProfile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintLeft_toRightOf="@id/viewPhoto"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewIndexWeightText" />
 
     <Button
         android:id="@+id/viewProgressButton"
@@ -92,7 +113,7 @@
         android:text="@string/progress_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/indexWeightText" />
+        app:layout_constraintTop_toBottomOf="@id/viewIndexDescription" />
 
     <WebView
         android:id="@+id/webView"

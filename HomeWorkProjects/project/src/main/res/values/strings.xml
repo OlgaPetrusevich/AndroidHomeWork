@@ -23,6 +23,10 @@
     <string name="max_weight_text">Максимальный вес</string>
     <string name="empty_list_text">История упражнений отсутствует</string>
     <string name="index_text">Введите рост и вес</string>
+    <string name="index_small">Недостаточная масса тела</string>
+    <string name="index_norm">Норма</string>
+    <string name="index_large">Избыточная масса тела</string>
+    <string name="index_very_large">Ожирение</string>
 
 
 </resources>

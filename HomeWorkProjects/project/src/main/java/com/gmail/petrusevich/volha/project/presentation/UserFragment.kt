@@ -1,7 +1,10 @@
 package com.gmail.petrusevich.volha.project.presentation
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -15,6 +18,8 @@ import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.SaveDataSettings
 import com.gmail.petrusevich.volha.project.data.HistorySetsDatabaseModel
 import kotlinx.android.synthetic.main.fragment_profile_tab.*
+import java.text.DecimalFormat
+import java.text.NumberFormat
 
 private const val BACK_MUSCLE = "Спина"
 private const val CHEST_MUSCLE = "Грудь"
@@ -27,7 +32,7 @@ class UserFragment : Fragment(), View.OnClickListener {
 
     private val historyExercisesViewModel by lazy { ViewModelProvider(this).get(HistoryExercisesViewModel::class.java) }
 
-    private val saveDataSettings by lazy { SaveDataSettings.getInstance(activity?.applicationContext!!)}
+    private val saveDataSettings by lazy { SaveDataSettings.getInstance(activity?.applicationContext!!) }
     private var countBackMuscle: Int = 0
     private var countChestMuscle: Int = 0
     private var countLegsMuscle: Int = 0
@@ -52,31 +57,10 @@ class UserFragment : Fragment(), View.OnClickListener {
         viewProgressButton.setOnClickListener(this)
         saveDataSettings.loadWeight(viewWeightText)
         saveDataSettings.loadHeight(viewHeightText)
+        saveDataSettings.loadImage(viewPhoto)
         showIndex()
-        viewWeightText.addTextChangedListener(object: TextWatcher{
-            override fun afterTextChanged(text: Editable?) {
-                saveDataSettings.saveWeight(viewWeightText)
-                showIndex()
-            }
-
-            override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-        })
-        viewHeightText.addTextChangedListener(object: TextWatcher{
-            override fun afterTextChanged(text: Editable?) {
-                saveDataSettings.saveHeight(viewHeightText)
-                showIndex()
-            }
-
-            override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-        })
+        getListener()
+        viewPhoto.setOnClickListener(this)
     }
 
     private fun setSumMuscle(itemList: List<HistorySetsDatabaseModel>) {
@@ -91,24 +75,37 @@ class UserFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun getIndexWeight(){
-        val height = (viewHeightText.text.toString().toDouble())/100
+    private fun getIndexWeight() {
+        val height = (viewHeightText.text.toString().toDouble()) / 100
         val weight = viewWeightText.text.toString().toInt()
-        val index = weight / (height*height)
-        val indexText = String.format("%.1f", index)
-        viewIndexWeightText.text = indexText
+        val index = weight / (height * height)
+        val decFormat = DecimalFormat("##.#")
+        val ind = decFormat.format(index)
+        val format = NumberFormat.getInstance()
+        val number = format.parse(ind)
+        viewIndexWeightText.text = number.toDouble().toString()
     }
 
-    private fun showIndex(){
-        if (viewWeightText.text.toString().isNotEmpty() && viewHeightText.text.toString().isNotEmpty()){
+    private fun showIndex() {
+        if (viewWeightText.text.toString().isNotEmpty() && viewHeightText.text.toString().isNotEmpty()) {
             getIndexWeight()
+            setDescription()
         }
     }
 
-    companion object {
-        const val TAG = "UserFragment"
-        fun getInstance() = UserFragment()
+    private fun setDescription() {
+        val index = viewIndexWeightText.text.toString().toDouble()
+        if (index < 18.5) {
+            viewIndexDescription.setText(R.string.index_small)
+        } else if (index >= 18.5 && index < 25) {
+            viewIndexDescription.setText(R.string.index_norm)
+        } else if (index in 25.0..30.0) {
+            viewIndexDescription.setText(R.string.index_large)
+        } else if (index > 30) {
+            viewIndexDescription.setText(R.string.index_very_large)
+        }
     }
+
 
     override fun onClick(view: View?) {
         when (view) {
@@ -118,6 +115,54 @@ class UserFragment : Fragment(), View.OnClickListener {
                 webView.settings.javaScriptEnabled = true
                 webView.loadUrl("file:///android_asset/chart.html")
             }
+            viewPhoto -> {
+                startAct()
+            }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val selectedImageURI = data?.data
+        saveDataSettings.saveImage(selectedImageURI)
+        viewPhoto.setImageURI(selectedImageURI)
+    }
+
+    private fun startAct() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.setType("image/*")
+        startActivityForResult(intent, 1)
+    }
+
+    private fun getListener() {
+        viewWeightText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                saveDataSettings.saveWeight(viewWeightText)
+                showIndex()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+        viewHeightText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(text: Editable?) {
+                saveDataSettings.saveHeight(viewHeightText)
+                showIndex()
+            }
+
+            override fun beforeTextChanged(text: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+        })
+    }
+
+    companion object {
+        const val TAG = "UserFragment"
+        fun getInstance() = UserFragment()
     }
 }
