@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.project.service
+package com.gmail.petrusevich.volha.project.timer
 
 import android.os.Handler
 

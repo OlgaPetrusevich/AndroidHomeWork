@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
 import kotlinx.android.synthetic.main.item_exercise.view.*
@@ -44,7 +45,11 @@ class ExerciseListAdapter(
 
         fun bind(exerciseItemList: ExerciseItemModel) {
             itemView.viewNameExercise.text = exerciseItemList.exerciseName
+            Glide.with(itemView.context)
+                    .load(exerciseItemList.urlToSmallImage)
+                    .into(itemView.viewImageMiniature)
         }
+
 
         override fun onClick(view: View?) {
             itemOnClickListener.itemOnClick(adapterPosition)

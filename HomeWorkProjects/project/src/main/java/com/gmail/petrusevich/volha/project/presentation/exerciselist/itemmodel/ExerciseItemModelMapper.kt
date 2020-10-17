@@ -12,6 +12,7 @@ class ExerciseItemModelMapper : (List<ExerciseDomainModel>) -> List<ExerciseItem
                         exerciseName = item.exerciseName,
                         exerciseDescription = item.exerciseDescription,
                         urlToImage = item.urlToImage,
+                        urlToSmallImage = item.urlToSmallImage,
                         id = item.id
                 )
             }

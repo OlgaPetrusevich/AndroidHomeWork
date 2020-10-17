@@ -129,7 +129,7 @@ class UserFragment : Fragment(), View.OnClickListener {
     }
 
     private fun startAct() {
-        val intent = Intent(Intent.ACTION_PICK)
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
         intent.setType("image/*")
         startActivityForResult(intent, 1)
     }

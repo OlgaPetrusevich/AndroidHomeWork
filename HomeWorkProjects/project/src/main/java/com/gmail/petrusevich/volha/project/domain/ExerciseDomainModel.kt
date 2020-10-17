@@ -6,6 +6,7 @@ class ExerciseDomainModel(
         val exerciseName: String,
         val exerciseDescription: String,
         val urlToImage: String,
+        val urlToSmallImage: String,
         val id: String
 )
 

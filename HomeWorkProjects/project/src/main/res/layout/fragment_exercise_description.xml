@@ -17,19 +17,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
-        android:layout_weight="3" />
-
+        android:layout_margin="7dp"
+        android:layout_weight="2"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:background="@drawable/exercise_item"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:background="@drawable/exercise_item">
 
         <TextView
+            style="@style/TextStyleSmall"
             android:id="@+id/viewSetExercise"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/set_exercise_text"
             app:layout_constraintBottom_toTopOf="@id/viewSetAmountExercise"
@@ -38,6 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            style="@style/TextStyleSmall"
             android:id="@+id/viewSetAmountExercise"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -49,17 +54,19 @@
             app:layout_constraintTop_toBottomOf="@id/viewSetExercise" />
 
         <TextView
+            style="@style/TextStyleSmall"
             android:id="@+id/viewText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/weight_text"
-            app:layout_constraintBottom_toTopOf="@id/viewWeightText"
+            app:layout_constraintBottom_toTopOf="@id/viewSetAmountExercise"
             app:layout_constraintLeft_toRightOf="@id/viewSetExercise"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
+
             android:id="@+id/viewWeightText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -76,7 +83,8 @@
         android:id="@+id/viewStartExerciseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/exercise_item"
         android:text="@string/start_exercise_text" />
 
     <Button
@@ -84,7 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="7dp"
         android:background="@drawable/button_circle"
         android:text="1:00" />
 
@@ -93,7 +101,8 @@
         android:id="@+id/viewEndExerciseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/exercise_item"
         android:text="@string/end_exercise_text" />
 
 

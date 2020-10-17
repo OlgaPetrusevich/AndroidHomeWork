@@ -10,6 +10,7 @@ class ExerciseDataModel(
         val exerciseName: String,
         val exerciseDescription: String,
         val urlToImage: String,
+        val urlToSmallImage: String,
         @PrimaryKey
         val id: String
 )

@@ -9,8 +9,13 @@
 
     <style name="TextStyle" parent="Theme.AppCompat">
         <item name="android:textSize">20sp</item>
-        <item name="color">@android:color/black</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="TextStyleSmall" parent="Theme.AppCompat">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="TextStyleProfile" parent="Theme.AppCompat">
@@ -44,6 +49,7 @@
     <style name="TextCategoryHistory" parent="Widget.MaterialComponents.TextView">
         <item name="android:textSize">25sp</item>
     </style>
+
 
 
 </resources>

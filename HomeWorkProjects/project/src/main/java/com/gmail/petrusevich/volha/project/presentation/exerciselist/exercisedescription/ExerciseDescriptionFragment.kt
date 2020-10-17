@@ -1,6 +1,5 @@
 package com.gmail.petrusevich.volha.project.presentation.exerciselist.exercisedescription
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -17,9 +16,8 @@ import com.gmail.petrusevich.volha.project.R
 import com.gmail.petrusevich.volha.project.presentation.ExerciseViewModel
 import com.gmail.petrusevich.volha.project.presentation.HistoryExercisesViewModel
 import com.gmail.petrusevich.volha.project.presentation.exerciselist.itemmodel.ExerciseItemModel
-import com.gmail.petrusevich.volha.project.service.TimerController
+import com.gmail.petrusevich.volha.project.timer.TimerController
 import kotlinx.android.synthetic.main.activity_exercises_list.*
-import kotlinx.android.synthetic.main.fragment_category_exercise_tab.*
 import kotlinx.android.synthetic.main.fragment_exercise_description.*
 
 class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
@@ -90,7 +88,6 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
                 activity?.supportFragmentManager?.popBackStack()
             }
             viewTimerButton -> {
-//                context!!.startService(Intent(context, TimerService::class.java))
                 timerController.getTimerTime()
 
             }
