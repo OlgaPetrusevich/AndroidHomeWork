@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.project.presentation
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
@@ -57,7 +58,7 @@ class UserFragment : Fragment(), View.OnClickListener {
         viewProgressButton.setOnClickListener(this)
         saveDataSettings.loadWeight(viewWeightText)
         saveDataSettings.loadHeight(viewHeightText)
-        saveDataSettings.loadImage(viewPhoto)
+        saveDataSettings.loadImage(viewPhoto, activity!!.applicationContext, Array(1) { Manifest.permission.WRITE_EXTERNAL_STORAGE}, activity!!)
         showIndex()
         getListener()
         viewPhoto.setOnClickListener(this)
@@ -130,7 +131,10 @@ class UserFragment : Fragment(), View.OnClickListener {
 
     private fun startAct() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-        intent.setType("image/*")
+        intent.addCategory(Intent.CATEGORY_OPENABLE)
+//        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
         startActivityForResult(intent, 1)
     }
 

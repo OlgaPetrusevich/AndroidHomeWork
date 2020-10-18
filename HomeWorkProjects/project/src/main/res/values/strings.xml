@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">project</string>
+    <string name="app_name">Карманный фитнес</string>
     <string name="gym_tab">Тренировки</string>
     <string name="history_tab">История</string>
     <string name="profile_tab">Профиль</string>
-    <string name="settings_tab">Настройки</string>
+    <string name="settings_tab">О Приложении</string>
     <string name="progress_text">Мой прогресс</string>
     <string name="gender_text">Пол</string>
     <string name="age_text">Возраст</string>
@@ -27,6 +27,9 @@
     <string name="index_norm">Норма</string>
     <string name="index_large">Избыточная масса тела</string>
     <string name="index_very_large">Ожирение</string>
-
+    <string name="app_name_text">Карманный фитнес</string>
+    <string name="app_description_text">Карманный фитнес - приложение для улучшения качества тренировок. Позволяет отслеживать историю занятий и прогресс. Содержит комплексы упражнений на различные группы мышц.</string>
+    <string name="app_version_text">Версия: 1.0.0</string>
+    <string name="app_year_text">Год: 2020</string>
 
 </resources>

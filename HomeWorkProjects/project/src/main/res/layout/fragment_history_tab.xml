@@ -30,6 +30,8 @@
         android:layout_margin="15dp">
 
     <Button
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/exercise_item"
         android:id="@+id/viewHistoryCategoryRear"
         style="@style/TextCategoryHistory"
         android:layout_width="match_parent"
@@ -42,6 +44,8 @@
         />
 
     <Button
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/exercise_item"
         android:id="@+id/viewHistoryCategoryLegs"
         style="@style/TextCategoryHistory"
         android:layout_width="match_parent"
@@ -53,6 +57,7 @@
         app:layout_constraintBottom_toTopOf="@id/viewHistoryCategoryArms"/>
 
     <Button
+        android:background="@drawable/exercise_item"
         android:id="@+id/viewHistoryCategoryArms"
         style="@style/TextCategoryHistory"
         android:layout_width="match_parent"

@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.viewNavigationGym -> loadFragment(CategoryExerciseFragment.getInstance())
                 R.id.viewNavigationHistory -> loadFragment(HistoryTabFragment.getInstance())
                 R.id.viewNavigationProfile -> loadFragment(UserFragment.getInstance())
+                R.id.viewNavigationSettings -> loadFragment(AppDescriptionFragment.getInstance())
                 else -> false
             }
         }

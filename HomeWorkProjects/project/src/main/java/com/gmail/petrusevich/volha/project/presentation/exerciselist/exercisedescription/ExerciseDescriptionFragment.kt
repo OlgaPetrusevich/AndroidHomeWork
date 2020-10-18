@@ -29,11 +29,15 @@ class ExerciseDescriptionFragment : Fragment(), View.OnClickListener {
     private val exerciseDescriptionController by lazy { ExerciseDescriptionController() }
     private val handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
-            viewTimerButton.text = msg.obj.toString()
-            viewTimerButton.isClickable = false
-            if(msg.obj == 0){
-                viewTimerButton.isClickable = true
-                viewTimerButton.text = "1:00"
+            if (viewTimerButton == null) {
+                removeMessages(1)
+            } else {
+                viewTimerButton.text = msg.obj.toString()
+                viewTimerButton.isClickable = false
+                if (msg.obj == 0) {
+                    viewTimerButton.isClickable = true
+                    viewTimerButton.text = "1:00"
+                }
             }
         }
     }

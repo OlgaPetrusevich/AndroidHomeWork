@@ -9,7 +9,7 @@
 
     <style name="TextStyle" parent="Theme.AppCompat">
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/colorViolet</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 
