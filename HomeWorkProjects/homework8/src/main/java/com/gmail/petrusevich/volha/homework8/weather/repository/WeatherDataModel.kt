@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8.repository
+package com.gmail.petrusevich.volha.homework8.weather.repository
 
 class WeatherDataModel(
         val temperature: String,

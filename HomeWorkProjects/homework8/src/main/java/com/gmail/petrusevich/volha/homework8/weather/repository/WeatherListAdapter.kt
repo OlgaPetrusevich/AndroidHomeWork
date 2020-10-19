@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8.repository
+package com.gmail.petrusevich.volha.homework8.weather.repository
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gmail.petrusevich.volha.homework8.R
-import com.gmail.petrusevich.volha.homework8.presenter.WeatherListItemModel
+import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListItemModel
 import kotlinx.android.synthetic.main.item_view.view.*
 
 class WeatherListAdapter : RecyclerView.Adapter<WeatherListAdapter.WeatherListViewHolder>() {

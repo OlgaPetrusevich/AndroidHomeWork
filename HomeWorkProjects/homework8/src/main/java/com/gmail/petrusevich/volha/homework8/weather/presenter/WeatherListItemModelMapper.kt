@@ -1,6 +1,6 @@
-package com.gmail.petrusevich.volha.homework8.presenter
+package com.gmail.petrusevich.volha.homework8.weather.presenter
 
-import com.gmail.petrusevich.volha.homework8.repository.WeatherDataModel
+import com.gmail.petrusevich.volha.homework8.weather.repository.WeatherDataModel
 
 class WeatherListItemModelMapper : (List<WeatherDataModel>) -> List<WeatherListItemModel> {
 

@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8
+package com.gmail.petrusevich.volha.homework8.weather
 
 import android.content.Context
 import android.content.SharedPreferences

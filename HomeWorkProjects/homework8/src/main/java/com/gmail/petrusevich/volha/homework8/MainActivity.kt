@@ -1,11 +1,13 @@
 package com.gmail.petrusevich.volha.homework8
 
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.gmail.petrusevich.volha.homework8.fragmentsweather.WeatherFragment
-import com.gmail.petrusevich.volha.homework8.fragmentsweather.WeatherListFragment
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.gmail.petrusevich.volha.homework8.city.CityFragment
+import com.gmail.petrusevich.volha.homework8.weather.SettingsFragment
+import com.gmail.petrusevich.volha.homework8.weather.fragmentsweather.WeatherFragment
+import com.gmail.petrusevich.volha.homework8.weather.fragmentsweather.WeatherListFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         showWeather()
         showHourlyWeather()
         viewSettings.setOnClickListener(this)
+        viewActionButton.setOnClickListener(this)
     }
 
     private fun showHourlyWeather() {
@@ -33,19 +36,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .commit()
     }
 
-    private fun showSettings() {
+    private fun showFragment(fragment: Fragment, tag: String) {
         supportFragmentManager.beginTransaction()
-                .add(R.id.fragmentContainerSettings, SettingsFragment.gteInstance(), SettingsFragment.TAG)
+                .add(R.id.fragmentContainerSettings, fragment, tag)
                 .remove(weatherListFragment)
                 .remove(weatherFragment)
                 .addToBackStack(null)
                 .commit()
-//        viewActionButton.visibility = View.GONE
+        viewActionButton.visibility = View.GONE
     }
 
     override fun onClick(view: View?) {
-        when (view){
-            viewSettings -> showSettings()
+        when (view) {
+            viewSettings -> showFragment(SettingsFragment.gteInstance(), SettingsFragment.TAG)
+            viewActionButton -> showFragment(CityFragment.gteInstance(), CityFragment.TAG)
         }
 
     }

@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8.repository
+package com.gmail.petrusevich.volha.homework8.weather.repository
 
 import org.json.JSONObject
 import java.time.LocalDateTime
@@ -33,7 +33,7 @@ class WeatherDataModelMapper : (String) -> List<WeatherDataModel> {
 
     private fun temperatureMapper(temp: String): String {
         val temperature = temp.toDouble().roundToInt()
-        return "$temperature C"
+        return "$temperature"
     }
 
     private fun timeMapper(date: String): String {

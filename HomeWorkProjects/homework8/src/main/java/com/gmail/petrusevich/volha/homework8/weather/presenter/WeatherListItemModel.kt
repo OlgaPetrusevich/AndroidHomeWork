@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8.presenter
+package com.gmail.petrusevich.volha.homework8.weather.presenter
 
 class WeatherListItemModel(
         val temperature: String,

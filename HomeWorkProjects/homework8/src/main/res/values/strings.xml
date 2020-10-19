@@ -6,4 +6,6 @@
     <string name="fahrenheit_name">Fahrenheit</string>
     <string name="city_name">City</string>
     <string name="enter_city_text">Enter the city name</string>
+    <string name="done_text">Done</string>
+    <string name="cancel_text">Cancel</string>
 </resources>
