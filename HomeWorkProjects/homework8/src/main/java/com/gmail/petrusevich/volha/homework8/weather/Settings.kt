@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.widget.SwitchCompat
 
 private const val SAVE_KEY = "SAVE_KEY"
+private const val SAVE_ID_VIEW = "SAVE_ID_VIEW"
 
 class Settings private constructor() {
 
@@ -24,6 +25,15 @@ class Settings private constructor() {
             it.apply()
         }
     }
+
+    fun saveIdItemView(itemViewId: Long){
+        sharedPreferences.edit().let {
+            it.putLong(SAVE_ID_VIEW, itemViewId)
+            it.apply()
+        }
+    }
+
+    fun loadIdItemView(): Long = sharedPreferences.getLong(SAVE_ID_VIEW, 0)
 
     fun setSwitch(switchCompat: SwitchCompat){
         switchCompat.isChecked = sharedPreferences.getBoolean(SAVE_KEY, false)

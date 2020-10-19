@@ -34,9 +34,17 @@ class CityListAdapter(
         notifyDataSetChanged()
     }
 
+    override fun getItemId(position: Int): Long {
+        return cityList[position].hashCode().toLong()
+    }
+
+
     class CityListViewHolder(
             itemView: View, private val itemOnClickListener: ItemOnClickListener
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+
+        init {itemView.setOnClickListener(this)}
+
 
         fun bind(cityItemModel: CityItemModel) {
             with(cityItemModel) {
@@ -48,6 +56,7 @@ class CityListAdapter(
 
         override fun onClick(item: View?) {
             itemOnClickListener.itemOnClick(adapterPosition)
+//            item?.viewCityText?.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_24, 0)
         }
     }
 
