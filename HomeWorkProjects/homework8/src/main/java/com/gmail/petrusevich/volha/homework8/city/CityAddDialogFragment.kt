@@ -9,6 +9,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.gmail.petrusevich.volha.homework8.R
 
+const val KEY = "KEY"
+private const val ERROR = "ERROR"
+
 class CityAddDialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -20,14 +23,14 @@ class CityAddDialogFragment : DialogFragment() {
                     .setTitle(R.string.enter_city_text)
                     .setCancelable(true)
                     .setPositiveButton(R.string.done_text) { dialog, i ->
-                        intent.putExtra("KEY", getCityName(view?.findViewById(R.id.viewCityEditText)))
+                        intent.putExtra(KEY, getCityName(view?.findViewById(R.id.viewCityEditText)))
                         targetFragment?.onActivityResult(1, Activity.RESULT_OK, intent)
                     }
                     .setNegativeButton(R.string.cancel_text) { dialog, i ->
                         dialog.cancel()
                     }
             builder.create()
-        } ?: throw IllegalStateException("ERROR")
+        } ?: throw IllegalStateException(ERROR)
     }
 
     private fun getCityName(view: EditText?): String {

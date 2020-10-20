@@ -9,7 +9,8 @@ import com.gmail.petrusevich.volha.homework8.city.presentation.itemmodel.CityIte
 import kotlinx.android.synthetic.main.item_city_list.view.*
 
 class CityListAdapter(
-        private val itemOnClickListener: ItemOnClickListener
+        private val itemOnClickListener: ItemOnClickListener,
+        private val itemPosition: Int
 ) : RecyclerView.Adapter<CityListAdapter.CityListViewHolder>() {
 
     private val cityList = mutableListOf<CityItemModel>()
@@ -24,6 +25,9 @@ class CityListAdapter(
 
     override fun onBindViewHolder(holder: CityListViewHolder, position: Int) {
         holder.bind(cityList[position])
+        if (position == itemPosition) {
+            holder.itemView.viewCityText.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_24, 0)
+        }
     }
 
     fun updateCityList(newCityList: List<CityItemModel>) {
@@ -34,16 +38,14 @@ class CityListAdapter(
         notifyDataSetChanged()
     }
 
-    override fun getItemId(position: Int): Long {
-        return cityList[position].hashCode().toLong()
-    }
-
 
     class CityListViewHolder(
             itemView: View, private val itemOnClickListener: ItemOnClickListener
     ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
-        init {itemView.setOnClickListener(this)}
+        init {
+            itemView.setOnClickListener(this)
+        }
 
 
         fun bind(cityItemModel: CityItemModel) {
@@ -54,9 +56,9 @@ class CityListAdapter(
             }
         }
 
+
         override fun onClick(item: View?) {
             itemOnClickListener.itemOnClick(adapterPosition)
-//            item?.viewCityText?.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_baseline_check_24, 0)
         }
     }
 

@@ -5,7 +5,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.gmail.petrusevich.volha.homework8.city.CityFragment
-import com.gmail.petrusevich.volha.homework8.weather.SettingsFragment
+import com.gmail.petrusevich.volha.homework8.settings.SettingsFragment
 import com.gmail.petrusevich.volha.homework8.weather.fragmentsweather.WeatherFragment
 import com.gmail.petrusevich.volha.homework8.weather.fragmentsweather.WeatherListFragment
 import kotlinx.android.synthetic.main.activity_main.*

@@ -1,17 +1,16 @@
 package com.gmail.petrusevich.volha.homework8.weather.fragmentsweather
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.gmail.petrusevich.volha.homework8.*
-import com.gmail.petrusevich.volha.homework8.weather.CELSIUS
-import com.gmail.petrusevich.volha.homework8.weather.FAHRENHEIT
-import com.gmail.petrusevich.volha.homework8.weather.Settings
+import com.gmail.petrusevich.volha.homework8.R
+import com.gmail.petrusevich.volha.homework8.settings.CELSIUS
+import com.gmail.petrusevich.volha.homework8.settings.FAHRENHEIT
+import com.gmail.petrusevich.volha.homework8.settings.Settings
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListItemModel
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListItemModelMapper
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListPresenterImpl
@@ -39,13 +38,15 @@ class WeatherFragment : Fragment(), WeatherListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        settings.getSharedPreferences(activity?.applicationContext!!)
         getUnits()
+        getCityName()
         activity?.findViewById<FloatingActionButton>(R.id.viewActionButton)?.visibility = View.VISIBLE
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.fetchWeatherList(units, "Minsk")
+        presenter.fetchWeatherList(units, city)
     }
 
     override fun onDestroy() {
@@ -54,11 +55,17 @@ class WeatherFragment : Fragment(), WeatherListView {
     }
 
     private fun getUnits() {
-        settings.getSharedPreferences(activity?.applicationContext!!)
-        units = if(settings.loadSettings()){
+        units = if (settings.loadSettings()) {
             CELSIUS
-        }else{
+        } else {
             FAHRENHEIT
+        }
+    }
+
+    private fun getCityName() {
+        val cityName = settings.loadCityName()
+        if (cityName != null) {
+            city = cityName
         }
     }
 
@@ -72,7 +79,6 @@ class WeatherFragment : Fragment(), WeatherListView {
     }
 
     override fun onError(errorMessage: String) {
-        Log.d("errorMessage", errorMessage)
         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
 

@@ -40,8 +40,8 @@ class CityListViewModel(
                 )
     }
 
-    fun insertCity(cityDataModel: CityDataModel){
-        disposable = Observable.create(ObservableOnSubscribe<CityDataModel>(){
+    fun insertCity(cityDataModel: CityDataModel) {
+        disposable = Observable.create(ObservableOnSubscribe<CityDataModel>() {
             cityListUseCase.insertCity(cityDataModel)
         }).subscribeOn(Schedulers.computation())
                 .subscribe()

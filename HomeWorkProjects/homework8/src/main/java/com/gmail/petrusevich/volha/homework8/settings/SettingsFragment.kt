@@ -1,4 +1,4 @@
-package com.gmail.petrusevich.volha.homework8.weather
+package com.gmail.petrusevich.volha.homework8.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 
 const val CELSIUS = "metric"
 const val FAHRENHEIT = "imperial"
+
 class SettingsFragment : Fragment(), View.OnClickListener {
 
     private val settings: Settings by lazy { Settings.getInstance() }
@@ -26,7 +27,6 @@ class SettingsFragment : Fragment(), View.OnClickListener {
         viewSwitch.setOnClickListener(this)
 
     }
-
 
 
     override fun onClick(view: View?) {

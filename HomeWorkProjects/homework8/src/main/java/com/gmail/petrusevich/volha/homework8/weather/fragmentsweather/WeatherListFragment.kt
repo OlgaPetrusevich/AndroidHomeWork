@@ -1,7 +1,6 @@
 package com.gmail.petrusevich.volha.homework8.weather.fragmentsweather
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.gmail.petrusevich.volha.homework8.*
-import com.gmail.petrusevich.volha.homework8.weather.CELSIUS
-import com.gmail.petrusevich.volha.homework8.weather.FAHRENHEIT
-import com.gmail.petrusevich.volha.homework8.weather.Settings
+import com.gmail.petrusevich.volha.homework8.R
+import com.gmail.petrusevich.volha.homework8.settings.CELSIUS
+import com.gmail.petrusevich.volha.homework8.settings.FAHRENHEIT
+import com.gmail.petrusevich.volha.homework8.settings.Settings
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListItemModel
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListItemModelMapper
 import com.gmail.petrusevich.volha.homework8.weather.presenter.WeatherListPresenterImpl
@@ -39,16 +38,18 @@ class WeatherListFragment : Fragment(), WeatherListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        settings.getSharedPreferences(activity?.applicationContext!!)
         viewWeatherList.apply {
             adapter = WeatherListAdapter()
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             getUnits()
+            getCityName()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.fetchWeatherList(units, "Minsk")
+        presenter.fetchWeatherList(units, city)
     }
 
     override fun onDestroy() {
@@ -57,11 +58,17 @@ class WeatherListFragment : Fragment(), WeatherListView {
     }
 
     private fun getUnits() {
-        settings.getSharedPreferences(activity?.applicationContext!!)
-        units = if(settings.loadSettings()){
+        units = if (settings.loadSettings()) {
             CELSIUS
-        }else{
+        } else {
             FAHRENHEIT
+        }
+    }
+
+    private fun getCityName() {
+        val cityName = settings.loadCityName()
+        if (cityName != null) {
+            city = cityName
         }
     }
 
@@ -70,7 +77,6 @@ class WeatherListFragment : Fragment(), WeatherListView {
     }
 
     override fun onError(errorMessage: String) {
-        Log.d("errorMessage", errorMessage)
         Toast.makeText(context, errorMessage, Toast.LENGTH_LONG).show()
     }
 

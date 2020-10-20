@@ -16,7 +16,7 @@ abstract class CityListDatabase : RoomDatabase() {
 
         fun getInstance(context: Context): CityListDatabase? {
             if (instance == null) {
-                instance = Room.databaseBuilder(context, CityListDatabase::class.java, "CityListDatabase")
+                instance = Room.databaseBuilder(context, CityListDatabase::class.java, "CityListDB")
                         .build()
             }
             return instance
