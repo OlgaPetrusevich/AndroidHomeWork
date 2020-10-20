@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/photo"
+        style="@style/TextDark80sp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/photo_name"
+        app:layout_constraintBottom_toTopOf="@id/title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/photo_name"
+        android:src="@drawable/photo_camera"
+        app:layout_constraintBottom_toBottomOf="@id/photo"
+        app:layout_constraintEnd_toEndOf="@id/photo" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextViewWithLine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="bottom"
+        android:text="@string/title_name"
+        app:layout_constraintBottom_toTopOf="@id/price"
+        app:layout_constraintTop_toBottomOf="@id/photo"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/TextViewWithLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="bottom"
+        android:text="@string/price_name"
+        app:layout_constraintBottom_toTopOf="@id/describe"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/location"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/location"
+        style="@style/TextViewWithLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="bottom"
+        android:text="@string/location_name"
+        app:layout_constraintBottom_toTopOf="@id/describe"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintLeft_toRightOf="@id/price"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintVertical_weight="1" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="5dp"
+        android:contentDescription="@string/location_name"
+        android:src="@drawable/location"
+        app:layout_constraintBottom_toBottomOf="@id/location"
+        app:layout_constraintEnd_toEndOf="@id/location" />
+
+    <TextView
+        android:id="@+id/describe"
+        style="@style/TextViewWithLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="bottom"
+        android:text="@string/describe_name"
+        app:layout_constraintBottom_toTopOf="@id/inventory"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/price"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/inventory"
+        style="@style/TextViewWithLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="bottom"
+        android:text="@string/inventory_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/weight"
+        app:layout_constraintTop_toBottomOf="@id/describe"
+        app:layout_constraintVertical_weight="1" />
+
+
+    <TextView
+        android:id="@+id/weight"
+        style="@style/TextViewWithLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="bottom"
+        android:text="@string/weight_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/inventory"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/describe"
+        app:layout_constraintVertical_weight="1" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
