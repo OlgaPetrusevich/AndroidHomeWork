@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HomeWork8</string>
+    <string name="main_activity_name">Weather</string>
+    <string name="settings_activity_name">Settings</string>
+    <string name="celsius_name">Celsius</string>
+    <string name="fahrenheit_name">Fahrenheit</string>
+    <string name="city_name">City</string>
+    <string name="enter_city_text">Enter the city name</string>
+    <string name="done_text">Done</string>
+    <string name="cancel_text">Cancel</string>
+</resources>
