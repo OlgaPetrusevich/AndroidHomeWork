@@ -4,6 +4,8 @@
 
     <uses-permission android:name="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE" />
     <uses-permission android:name="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE" />
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
+    <uses-permission android:name="android.permission.WRITE_USER_DICTIONARY"/>
 
     <application
         android:allowBackup="true"
