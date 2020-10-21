@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.petrusevich.volha.homework9">
 
+    <uses-permission android:name="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE" />
+    <uses-permission android:name="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE" />
 
     <application
         android:allowBackup="true"
