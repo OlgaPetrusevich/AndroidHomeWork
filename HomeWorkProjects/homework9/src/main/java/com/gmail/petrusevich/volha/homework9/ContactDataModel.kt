@@ -6,7 +6,5 @@ class ContactDataModel (
 )
 
 
-//        @ColumnInfo(name = "DataType")
-//        @field:TypeConverters(ContactDatabaseConverter::class)
-//        var dataType: ContactDataType = ContactDataType.PHONE
+
 

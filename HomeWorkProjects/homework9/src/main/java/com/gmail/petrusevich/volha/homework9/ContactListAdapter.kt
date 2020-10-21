@@ -24,10 +24,7 @@ class ContactListAdapter(
     }
 
     fun updateListContact(contacts: List<ContactDataModel>) {
-//        contactsList.apply {
-//            clear()
-//            addAll(contacts)
-//        }
+
         contactsList = contacts
         notifyDataSetChanged()
     }

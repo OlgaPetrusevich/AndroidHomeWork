@@ -31,16 +31,6 @@ class ContactFragment : Fragment() {
             cursor.close()
         }
         (viewListRecycler.adapter as ContactListAdapter).updateListContact(contactsList)
-//        with(viewLifecycleOwner) {
-//            cityListViewModel.cityListLiveData.observe(this, Observer { items ->
-//                (viewCityList.adapter as? CityListAdapter)?.updateCityList(items)
-//
-//            })
-//            cityListViewModel.cityErrorLiveData.observe(this, Observer { throwable ->
-//                Toast.makeText(activity?.applicationContext, throwable.message, Toast.LENGTH_SHORT).show()
-//            })
-//        }
-//        cityListViewModel.getCityList()
 
     }
 
