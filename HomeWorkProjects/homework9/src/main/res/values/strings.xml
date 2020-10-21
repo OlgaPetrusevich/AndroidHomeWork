@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HomeWork9</string>
+    <string name="title_name">Адресная книга</string>
+    <string name="show_contacts_name">Показать список контактов</string>
+</resources>
