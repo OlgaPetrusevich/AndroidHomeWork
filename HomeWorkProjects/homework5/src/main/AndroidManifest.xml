@@ -20,7 +20,8 @@
         <activity android:name=".EditContactActivity"/>
         <provider
             android:authorities="com.gmail.petrusevich.volha.homework5"
-            android:name=".contentProvider.ContactDataContentProvider"/>
+            android:name=".contentProvider.ContactDataContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>
