@@ -1,5 +1,6 @@
 package com.gmail.petrusevich.volha.homework5.database
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
@@ -11,7 +12,7 @@ interface ContactDao {
     fun getAllContacts(): LiveData<List<Contacts>>?
 
     @Query("SELECT * FROM Contacts ORDER BY name COLLATE NOCASE ASC")
-    fun getAll(): List<Contacts>?
+    fun getAll(): Cursor
 
     @Query("SELECT * FROM Contacts WHERE id = :idContact")
     fun getContact(idContact: Int): Contacts?
