@@ -24,7 +24,9 @@
         <provider
             android:authorities="com.gmail.petrusevich.volha.homework5"
             android:name=".contentProvider.ContactDataContentProvider"
-            android:exported="true"/>
+            android:exported="true"
+            android:readPermission="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE"
+            android:writePermission="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE"/>
     </application>
 
 </manifest>
