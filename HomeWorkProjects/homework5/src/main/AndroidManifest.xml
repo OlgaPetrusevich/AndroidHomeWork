@@ -2,8 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gmail.petrusevich.volha.homework5">
 
-    <permission android:name="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE" android:protectionLevel="normal" />
-    <permission android:name="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE" android:protectionLevel="normal" />
+    <permission
+        android:name="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+    <permission android:name="android.permission.READ_USER_DICTIONARY"/>
+    <permission android:name="android.permission.WRITE_USER_DICTIONARY"/>
 
     <application
         android:allowBackup="true"
@@ -20,13 +26,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddContactActivity" />
-        <activity android:name=".EditContactActivity"/>
+        <activity android:name=".EditContactActivity" />
+
         <provider
-            android:authorities="com.gmail.petrusevich.volha.homework5"
             android:name=".contentProvider.ContactDataContentProvider"
+            android:authorities="com.gmail.petrusevich.volha.homework5"
             android:exported="true"
             android:readPermission="com.gmail.petrusevich.volha.homework5.data/data.READ_DATABASE"
-            android:writePermission="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE"/>
+            android:writePermission="com.gmail.petrusevich.volha.homework5.data/data.WRITE_DATABASE" />
     </application>
 
 </manifest>
